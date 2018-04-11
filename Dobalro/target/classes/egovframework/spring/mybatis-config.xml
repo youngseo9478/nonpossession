@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties resource="dbinfo.properties" />
+	<typeAliases>
+		<typeAlias type="com.dobalro.biz.users.vo.UsersVO" alias="usersvo"></typeAlias>
+		<typeAlias type="com.dobalro.biz.reply.vo.ReplyVO" alias="replyvo"></typeAlias>
+		<typeAlias type="com.dobalro.biz.board.vo.BoardVO" alias="boardvo"></typeAlias>
+		</typeAliases>
+
+	<mappers>
+		<mapper class="com.dobalro.biz.mybatis.mapper.BoardMapper"/>
+		<mapper class="com.dobalro.biz.mybatis.mapper.UsersMapper"/>
+		<mapper class="com.dobalro.biz.mybatis.mapper.ReplyMapper"/>
+			</mappers>
+</configuration>
