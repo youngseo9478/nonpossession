@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>login</title>
+<script type="text/javascript">
+window.onload = function(){
+	var loginForm = document.getElementById("form1");
+	loginForm.onsubmit = check;
+}
+
+function check(){
+	var id = document.getElementById("id");
+	var pw = document.getElementById("pw");
+	if(id.value =="" || id.value.trim().length == 0){
+		alert("ID가 입력 되지 않았습니다.");
+		id.focus();
+		return false;
+	}
+	if(pw.value =="" || pw.value.trim().length == 0){
+		alert("pw가 입력 되지 않았습니다.");
+		pw.focus();
+		return false;
+	}
+}
+</script>
+</head>
+<body>
+<h3> 로그인 폼</h3>
+<form id="form1" action="./login.do" method="post" >
+  <table border="1">
+  <tr> 
+     <th width="25%">id</th> 
+     <td><input type="text" name="id" id="id" > </td>
+  </tr>
+  <tr> 
+       <th>pw</th> 
+       <td> <input type="password" name="pw" id="pw"></td>
+  </tr>
+  <tr> 
+       <td colspan="2" align="center">
+          <input type="submit" value="로그인" >
+          <input type="reset" value="취소">
+       </td>
+  </tr>
+</table>
+<a href="./insertUser.html">회원가입</a>
+</form>
+</body>
+</html>
