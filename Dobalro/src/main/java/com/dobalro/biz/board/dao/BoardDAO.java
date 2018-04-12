@@ -27,12 +27,12 @@ public class BoardDAO implements DobalroBoardDAO {
 	@Override
 	public int inserBoard(BoardVO vo) {
 		
-		return 0;
+		return mapper.insertBoard(vo);
 	}
 
 	@Override
 	public int updateBoard(BoardVO vo) {
-		return mapper.insertBoard(vo);
+		return mapper.updateboard(vo);
 	}
 
 	@Override
