@@ -13,6 +13,5 @@
 	<mappers>
 		<mapper class="com.dobalro.biz.mybatis.mapper.BoardMapper"/>
 		<mapper class="com.dobalro.biz.mybatis.mapper.UsersMapper"/>
-		<mapper class="com.dobalro.biz.mybatis.mapper.ReplyMapper"/>
-			</mappers>
+		</mappers>
 </configuration>

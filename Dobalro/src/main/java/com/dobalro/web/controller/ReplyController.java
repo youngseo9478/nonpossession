@@ -31,8 +31,8 @@ public class ReplyController {
     
     // 댓글 목록(@Controller방식 : veiw(화면)를 리턴)
     @RequestMapping("list.do")
-    public ModelAndView list(@RequestParam int bno, ModelAndView mav){
-        List<ReplyVO> list = replyService.list(bno);
+    public ModelAndView list(@RequestParam int board_num, ModelAndView mav){
+        List<ReplyVO> list = replyService.list(board_num);
         // 뷰이름 지정
         mav.setViewName("board/replyList");
         // 뷰에 전달할 데이터 지정
@@ -44,8 +44,8 @@ public class ReplyController {
     // 댓글 목록(@RestController Json방식으로 처리 : 데이터를 리턴)
     @RequestMapping("listJson.do")
     @ResponseBody // 리턴데이터를 json으로 변환(생략가능)
-    public List<ReplyVO> listJson(@RequestParam int bno){
-        List<ReplyVO> list = replyService.list(bno);
+    public List<ReplyVO> listJson(@RequestParam int board_num){
+        List<ReplyVO> list = replyService.list(board_num);
         return list;
     }
 }
