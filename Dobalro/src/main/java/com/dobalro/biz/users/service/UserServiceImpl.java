@@ -38,6 +38,12 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public UsersVO logout(UsersVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 
