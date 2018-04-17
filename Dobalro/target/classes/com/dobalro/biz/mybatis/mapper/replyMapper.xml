@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
     
     <!-- 댓글 목록 -->
-    <select id="listReply" resultType="com.example.spring02.model.board.dto.ReplyVO">
+    <select id="listReply" resultType="com.dobalro.biz.reply.vo.ReplyVO">
         SELECT reply_num,board_num,rcontent,user_num, user_name, r.rdate
         FROM ReplyVO r,users m
         WHERE r.usernum = m.nickname AND board_num=#{board_num}
