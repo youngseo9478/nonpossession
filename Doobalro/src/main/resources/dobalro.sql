@@ -1,26 +1,32 @@
--- users
+DROP TABLE replys;
+DROP TABLE boards;
+DROP TABLE users;
+-- user
 CREATE TABLE users (
-	user_num VARCHAR(8)  NOT NULL, -- user_num
-	nickname VARCHAR(10) NOT NULL, -- nickname
-	phone    VARCHAR(11) NOT NULL, -- phone
-	pw       VARCHAR(15) NOT NULL  -- pw
-);
-
--- reply
-CREATE TABLE reply (
-	reply_num  VARCHAR(4)   NOT NULL, -- reply_num
-	board_num  VARCHAR(4)   NOT NULL, -- board_num
-	reply_text VARCHAR(200) NOT NULL, -- reply_text
-	replyer    VARCHAR(8)   NOT NULL, -- replyer
-	rdate      DATE         NOT NULL  -- rdate
+	userNum		NUMBER(8)			PRIMARY KEY,					-- 유저번호
+	userName	VARCHAR(40)			UNIQUE,							-- 유저 닉네임
+	userPhone	VARCHAR(40)			NOT NULL UNIQUE,				-- 유저 폰번호(id대용)
+	userPw		VARCHAR(40)			NOT NULL						-- 유저 비밀번호
 );
 
 -- board
-CREATE TABLE board (
-	board_num     VARCHAR(8)   NOT NULL, -- board_num
-	user_num      VARCHAR(8)   NOT NULL, -- user_num
-	board_title   VARCHAR(30)  NOT NULL, -- board_title
-	board_content VARCHAR(200) NOT NULL, -- board_content
-	board_date    DATE         NOT NULL, -- board_date
-	viewcnt       INTEGER      NOT NULL  -- viewcnt
+CREATE TABLE boards (
+	boardNum		NUMBER(8)		PRIMARY KEY,					-- 게시판 번호
+	userNum			NUMBER(8)		REFERENCES users(userNum),		-- 게시판 글 쓴 유저의 번호
+	boardWriter		VARCHAR(40),									-- 게시판 작성자
+	boardTitle		VARCHAR(200),									-- 게시판 제목
+	boardContent	VARCHAR(2000),									-- 게시판 내용
+	boardDate		VARCHAR(40),									-- 게시판 작성일
+	boardCnt		NUMBER(6)		default 0,						-- 게시판 조회수
+	boardRCnt		NUMBER(6)		default 0						-- 댓글 수
 );
+
+-- reply
+CREATE TABLE replys (
+	replyNum		NUMBER(8)	PRIMARY KEY,						-- 댓글 번호
+	boardNum		NUMBER(8)	REFERENCES boards(boardNum),		-- 댓글이 달린 게시판의 번호
+	replyContent	VARCHAR(500),									-- 댓글 내용
+	replyWriter		VARCHAR(40),									-- 댓글 작성자
+	replyDate		VARCHAR(40)										-- 댓글 작성일
+);
+
