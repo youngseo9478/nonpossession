@@ -307,7 +307,6 @@ public class UBRController {
 		mav.addObject("board", BoardService.getBoard(boardNum));
 		mav.addObject("replys", this.getAllReply(boardNum));
 		mav.setViewName("board");
-
 		return mav;
 	}
 
@@ -333,9 +332,12 @@ public class UBRController {
 		bvo.setBoardContent(req.getParameter("boardContent"));
 		bvo.setBoardTitle(req.getParameter("boardTitle"));
 		bvo.setBoardDate(nowTime);
-		bvo.setBoardNum(Integer.parseInt(req.getParameter("boardNum")));
+		int boardNum = Integer.parseInt(req.getParameter("boardNum"));
+		bvo.setBoardNum(boardNum);
 		BoardService.updateBoard(bvo);
-		mav.setViewName("redirect:listBoard.do");
+		mav.addObject("board", BoardService.getBoard(boardNum));
+		mav.setViewName("board");
+		// mav.setViewName("redirect:listBoard.do");
 		return mav;// �닔�젙�쓣 �솗�씤�븯�젮硫� �떎�떆 �겢由��빐 �뱾�뼱媛��빞�빐�꽌 踰덇굅濡�湲댄븳�뜲..萸�..�뀕
 	}
 
