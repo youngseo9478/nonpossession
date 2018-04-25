@@ -17,7 +17,7 @@ public interface BoardMapper {
 	public void addBoard(BoardVO vo);
 	
 	@Delete("delete from Boards where boardNum = #{boardNum}")
-	public void deleteBoard(BoardVO vo);
+	public void deleteBoard(int boardNum);
 	
 	@Update("update boards set boardTitle= #{boardTitle}, boardContent = #{boardContent}, boardDate = #{boardDate} where boardNum = #{boardNum}")
 	public void updateBoard(BoardVO vo);

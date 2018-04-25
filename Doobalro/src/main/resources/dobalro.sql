@@ -1,6 +1,7 @@
 DROP TABLE replys;
 DROP TABLE boards;
 DROP TABLE users;
+
 -- user
 CREATE TABLE users (
 	userNum		NUMBER(8)			PRIMARY KEY,					-- 유저번호

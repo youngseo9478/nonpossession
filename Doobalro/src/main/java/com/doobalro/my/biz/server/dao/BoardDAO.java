@@ -47,9 +47,9 @@ public class BoardDAO implements BoardDaoFrame{
 		
 	}
 	@Override
-	public void deleteBoard(BoardVO vo) {
+	public void deleteBoard(int boardNum) {
 		//유저체크는 컨트롤러 딴에서 
-		mapper.deleteBoard(vo);
+		mapper.deleteBoard(boardNum);
 	}
 	@Override
 	public void updateBoard(BoardVO vo) {

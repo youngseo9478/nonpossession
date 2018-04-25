@@ -36,8 +36,7 @@
 <link href='https://fonts.googleapis.com/css?family=Muli:400,300'
 	rel='stylesheet' type='text/css'>
 <link href="css/themify-icons.css" rel="stylesheet">
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/board.js"></script> -->
+
 </head>
 <body>
 	<div class="wrapper">
@@ -67,8 +66,7 @@
 					<li><a href="Bike.do"> <i class="ti-direction "></i>
 							<p>전국 거치소 현황</p>
 					</a></li>
-					<li class="active"><a href="./listBoard.do"> <i
-							class="ti-comment"></i>
+					<li class="active"><a href="./listBoard.do"> <i class="ti-comment"></i>
 							<p>게시판</p>
 					</a></li>
 					<li><a href="maps.html"> <i class="ti-map"></i>
@@ -88,7 +86,7 @@
 							class="icon-bar bar1"></span> <span class="icon-bar bar2"></span>
 						<span class="icon-bar bar3"></span>
 					</button>
-					<a class="navbar-brand" href="#">Board</a>
+					<a class="navbar-brand" href="#">Edit</a>
 				</div>
 			</div>
 			</nav>
@@ -97,59 +95,56 @@
 			<div class="content">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-md-11">
+						<div class="col-lg-8 col-md-10">
 							<div class="card">
 								<div class="header">
-									<h4 class="title">게시물 상세보기</h4>
-									<br>
+									<h4 class="title">게시물 수정</h4>
 								</div>
-								<div class="content table-responsive">
-									<input id="boardNum" type="hidden" name="boardNum"
-										value="${board.boardNum }"> <input id="UserName"
-										type="hidden" name="userName" value="${user.userName }">
-									<input id="boardWriter" type="hidden" name="boardWriter"
-										value="${board.boardWriter }">
-									<form action="updateBoardForm.do">
-										<table class="table table-striped">
-											<tr>
-												<td width="10%" bgcolor="E6FFEF">제목</td>
-												<td id="title" colspan="3">${board.boardTitle }</td>
-
-											</tr>
-											<tr>
-												<td width="10%" bgcolor="E6FFEF">작성자</td>
-												<td width="40%">${board.boardWriter}</td>
-												<td width="10%" bgcolor="E6FFEF">작성일</td>
-												<td width="40%">${board.boardDate}</td>
-											</tr>
-											<tr>
-												<td bgcolor="E6FFEF">내용</td>
-												<td colspan="3">${board.boardContent}</td>
-											</tr>
-											<tr>
-												<td colspan="4" align="center"><a type="button"
-													href="./listBoard.do" class="btn btn-info btn-fill btn-wd">뒤로</a>
-													<c:set var="userName" value="${user.userName }"></c:set>
-													<c:choose>
-														<c:when test="${board.boardWriter eq userName}">
-															<a type='button' class='btn btn-info btn-fill btn-wd'
-																href="./updateBoardForm.do?boardNum=${board.boardNum }">수정</a>
-															<a type='button' class='btn btn-info btn-fill btn-wd'
-																href="./deleteBoard.do?boardNum=${board.boardNum }" >삭제</a>
-														</c:when>
-													</c:choose>
-													
-												</td>
-											</tr>
-										</table>
+								<div class="content">
+									<form action="updateBoard.do" method="post">
+										<input type="hidden" name="userNum" value="${user.userNum}">
+										<input type="hidden" name="boardNum" value="${board.boardNum}">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>제목</label> <input type="text"
+														class="form-control border-input"
+														value="${board.boardTitle }" name="boardTitle">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>작성자</label> <input type="text"
+														class="form-control border-input" readonly="readonly" name="boardWriter"
+														value="${user.userName}">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>내용</label>
+													<textarea rows="10" class="form-control border-input"
+														 name="boardContent">${board.boardContent }</textarea>
+												</div>
+											</div>
+										</div>
+										<div class="text-center">
+											<a type="button" href="./getBoard.do?boardNum=${board.boardNum }" class="btn btn-info btn-fill btn-wd" >뒤로</a>
+											<input type="submit" class="btn btn-info btn-fill btn-wd" value="완료">
+										</div>
+										<div class="clearfix"></div>
 									</form>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+			</div>
 
-				<footer class="footer">
+			<footer class="footer">
 				<div class="container-fluid">
 					<nav class="pull-left">
 					<ul>
@@ -162,7 +157,8 @@
 				</div>
 				</footer>
 
-			</div>
+
 		</div>
+	</div>
 </body>
 </html>

@@ -76,10 +76,11 @@ public class UBRController {
 	}
 
 	@RequestMapping("/updateBoardForm.do") // 寃뚯떆臾� �닔�젙 �럹�씠吏�濡�
-	public ModelAndView updateBoardForm(HttpServletRequest req) {
+	public ModelAndView updateBoardForm(int boardNum) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("board", req.getAttribute("board"));
-		mav.setViewName("updateBoardForm.jsp"); // 0424에 수정함
+		mav.addObject("board", BoardService.getBoard(boardNum));
+		// mav.addObject("board", req.getAttribute("board"));
+		mav.setViewName("updateBoardForm"); // 0425
 		return mav;
 	}
 
@@ -328,31 +329,20 @@ public class UBRController {
 	@RequestMapping(value = "/updateBoard.do", method = RequestMethod.POST)
 	public ModelAndView updateboard(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		UserVO uvo = (UserVO) req.getAttribute("user");
-		BoardVO bvo = (BoardVO) req.getAttribute("board");
-
-		if (bvo.getUserNum() == uvo.getUserNum()) {
-			bvo.setBoardContent(req.getParameter("boardContent"));
-			bvo.setBoardTitle(req.getParameter("boardTitle"));
-			bvo.setBoardDate(nowTime);
-			bvo.setBoardNum(Integer.parseInt(req.getParameter("boardNum")));
-			BoardService.updateBoard(bvo);
-			req.setAttribute("result", "�닔�젙 �꽦怨�");
-		} else {
-			req.setAttribute("result", "�닔�젙 �떎�뙣");
-		}
+		BoardVO bvo = new BoardVO();
+		bvo.setBoardContent(req.getParameter("boardContent"));
+		bvo.setBoardTitle(req.getParameter("boardTitle"));
+		bvo.setBoardDate(nowTime);
+		bvo.setBoardNum(Integer.parseInt(req.getParameter("boardNum")));
+		BoardService.updateBoard(bvo);
 		mav.setViewName("redirect:listBoard.do");
 		return mav;// �닔�젙�쓣 �솗�씤�븯�젮硫� �떎�떆 �겢由��빐 �뱾�뼱媛��빞�빐�꽌 踰덇굅濡�湲댄븳�뜲..萸�..�뀕
 	}
 
-	@RequestMapping(value = "/deleteBoard.do", method = RequestMethod.POST)
-	public ModelAndView deleteboard(HttpServletRequest req) {
+	@RequestMapping(value = "/deleteBoard.do")
+	public ModelAndView deleteboard(int boardNum) {
 		ModelAndView mav = new ModelAndView();
-		UserVO uvo = (UserVO) req.getAttribute("user");
-		BoardVO bvo = (BoardVO) req.getAttribute("board");
-		if (uvo.getUserNum() == bvo.getUserNum()) {
-			BoardService.deleteBoard(bvo);
-		}
+		BoardService.deleteBoard(boardNum);
 		mav.setViewName("redirect:listBoard.do");
 		return mav;
 	}

@@ -127,6 +127,7 @@
 											<th>City</th> -->
 										</thead>
 										<tbody>
+										
 											<c:forEach var="data" items="${boardList}" varStatus="status">
 												<tr>
 													<td>${status.count }</td>

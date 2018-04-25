@@ -7,7 +7,7 @@ public interface BoardService {
 
 	public void addBoard(BoardVO vo); //�Խù� �ۼ�
 	
-	public void deleteBoard(BoardVO vo);//�Խù� ����
+	public void deleteBoard(int boardNum);//�Խù� ����
 	
 	public void updateBoard(BoardVO vo);//�Խù� ����	
 

@@ -7,7 +7,7 @@ import com.doobalro.my.biz.server.vo.BoardVO;
 
 public interface BoardDaoFrame {
 	public void addBoard(BoardVO vo);
-	public void deleteBoard(BoardVO vo);
+	public void deleteBoard(int boardNum);
 	public void updateBoard(BoardVO vo);
 	public List<BoardVO> searchBoard(String condition, String keyword);
 	public BoardVO getBoard(int boardNum);
