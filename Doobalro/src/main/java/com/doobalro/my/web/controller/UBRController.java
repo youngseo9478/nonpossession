@@ -98,7 +98,7 @@ public class UBRController {
 			uvo = UserService.getUser(uvo);
 			session.setAttribute("user", uvo); // �씠嫄� 瑗� �닔�젙
 			System.out.println(uvo);
-			mav.setViewName("Bike");
+			mav.setViewName("bikeStatus");
 
 		} else {
 			mav.setViewName("login");

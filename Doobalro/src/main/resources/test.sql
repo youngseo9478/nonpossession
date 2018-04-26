@@ -10,6 +10,8 @@ select *from boards;
 
 select *from replys;
 
+select * from BIKE_STATUS;
+select count(*) from BIKE_STATUS;
 
 insert into users (userNum,userName,userPhone,userPw,userBirth) values((select nvl(max(userNum),0)+1 from users),'test','123456','1234','1234'))
 
