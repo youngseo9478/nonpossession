@@ -8,7 +8,7 @@ public interface ReplyService {
 	public void deleteReply(ReplyVO vo);
 	public void updateReply(ReplyVO vo);
 	public ReplyVO getReply(int replyNum);
-	public List<ReplyVO> getAllReply(ReplyVO vo);
+	public List<ReplyVO> getAllReply(int boardnum);
 	public void synchroReply(String afterName, String beforeName);
 	
 }

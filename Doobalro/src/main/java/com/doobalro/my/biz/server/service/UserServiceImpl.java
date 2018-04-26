@@ -47,5 +47,12 @@ public class UserServiceImpl implements UserService {
 	public String changePw(UserVO vo) {
 		return dao.changePw(vo);
 	}
+	@Override
+	public boolean checkId(UserVO vo) {
+		return dao.checkId(vo);
+	}
+	
+
+	
 
 }

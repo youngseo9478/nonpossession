@@ -48,12 +48,12 @@ public class ReplyDAO implements ReplyDaoFrame{
 	}
 	@Override
 	public void deleteReply(ReplyVO vo) {
-		//유저체크는 컨트롤러 딴에서
+		//�쑀��泥댄겕�뒗 而⑦듃濡ㅻ윭 �뵶�뿉�꽌
 		mapper.deleteReply(vo);
 	}
 	@Override
 	public void updateReply(ReplyVO vo) {
-		//유저체크는 컨트롤러 딴에서
+		//�쑀��泥댄겕�뒗 而⑦듃濡ㅻ윭 �뵶�뿉�꽌
 		mapper.updateReply(vo);
 	}
 	@Override
@@ -61,8 +61,8 @@ public class ReplyDAO implements ReplyDaoFrame{
 		return mapper.getReply(replyNum);
 	}
 	@Override
-	public List<ReplyVO> getAllReply(ReplyVO vo) {
-		return mapper.getAllReply(vo);
+	public List<ReplyVO> getAllReply(int boardnum) {
+		return mapper.getAllReply(boardnum);
 	}
 	@Override
 	public void RcntUpReply(ReplyVO vo) {

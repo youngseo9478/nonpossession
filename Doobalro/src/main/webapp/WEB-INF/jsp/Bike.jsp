@@ -3,6 +3,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script type="text/javascript">
+function logout() {
+	f.action = "logout.do";
+	f.submit();
+}
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="apple-touch-icon" sizes="76x76"
 	href="assets/img/apple-icon.png">
@@ -37,45 +43,10 @@
 
 </head>
 <body>
+<form action="" name="f">
 
 	<div class="wrapper">
-		<div class="sidebar" data-background-color="white"
-			data-active-color="danger">
-
-			<!--
-		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
-		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
-	-->
-
-			<div class="sidebar-wrapper">
-				<div class="logo">
-					<a href="http://www.creative-tim.com" class="simple-text">
-						Creative Tim </a>
-				</div>
-
-				<ul class="nav">
-					<li><a href="dashboard.html"> <i class="ti-shine"></i>
-							<p>날씨</p>
-					</a></li>
-					<li><a href="typography.html"> <i class="ti-cloud"></i>
-							<p>대기질</p>
-					</a></li>
-					<li><a href="user.html"> <i class="ti-bar-chart "></i>
-							<p>자전거 사고</p>
-					</a></li>
-					<li class="active"><a href="Bike.do"> <i
-							class="ti-direction "></i>
-							<p>전국 거치소 현황</p>
-					</a></li>
-					<li><a href="./listBoard.do"> <i class="ti-comment"></i>
-							<p>게시판</p>
-					</a></li>
-					<li><a href="maps.html"> <i class="ti-map"></i>
-							<p>지도</p>
-					</a></li>
-				</ul>
-			</div>
-		</div>
+		<jsp:include page="menu.jsp" />
 
 		<div class="main-panel">
 			<nav class="navbar navbar-default">
@@ -92,7 +63,7 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown"> <i class="ti-panel"></i>
-								<p>Stats</p>
+								<a href="myinformation.do">내정보</a>
 						</a></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown"> <i class="ti-bell"></i>
@@ -145,7 +116,7 @@
 		</div>
 	</div>
 
-
+</form>
 </body>
 
 <!--   Core JS Files   -->

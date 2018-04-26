@@ -16,3 +16,19 @@ insert into users (userNum,userName,userPhone,userPw,userBirth) values((select n
 insert into Boards (boardNum,userNum,boardWriter,boardTitle,boardContent,boardDate) values((select nvl(max(boardNum),0)+1 from boards),1,'test','title','content','1234')
 
 update boards set boardCnt= boardCnt+1 where boardNum = 1
+
+select * from weather;
+select * from location_w;
+
+select * from weather w, location_w loc where w.name = loc.location;
+
+
+
+
+
+
+
+
+
+
+

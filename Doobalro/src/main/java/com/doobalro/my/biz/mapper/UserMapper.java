@@ -36,4 +36,7 @@ public interface UserMapper {
 	
 	@Update("update users set userPw = #{userPw} where username = #{userName}")
 	public int changePw(UserVO vo);
+	
+	@Select("select userPhone from users where userPhone = #{userPhone}")
+	public String idcheck(UserVO vo);
 }

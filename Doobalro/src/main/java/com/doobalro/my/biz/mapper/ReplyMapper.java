@@ -18,14 +18,14 @@ public interface ReplyMapper {
 	@Delete("delete from replys where replyNum = #{replyNum}")
 	public void deleteReply(ReplyVO vo);
 	
-	@Update("update replys set replyContent= #{replyContent}, replyWriter = #{replyWriter}, replyDate = #{replyDate} where replyNum = #{replyNum}")
+	@Update("update replys set replyContent= #{replyContent}, replyDate = #{replyDate} where replyNum = #{replyNum}")
 	public void updateReply(ReplyVO vo);
 	
 	@Select("select * from replys where replyNum = #{replyNum}")
 	public ReplyVO getReply(int replyNum);
 	
 	@Select("select * from replys where boardNum = #{boardNum}")
-	public List<ReplyVO> getAllReply(ReplyVO vo);
+	public List<ReplyVO> getAllReply(int boardnum);
 	
 	@Update("update boards set boardRCnt= boardRCnt+1 where boardNum = #{boardNum}")
 	public void RcntUpReply(ReplyVO vo);
@@ -33,3 +33,4 @@ public interface ReplyMapper {
 	@Update("update replys set replyWriter = #{afterName} where replyWriter = #{befoName}")
 	public void synchroReply(HashMap<String, String> map);
 }
+	

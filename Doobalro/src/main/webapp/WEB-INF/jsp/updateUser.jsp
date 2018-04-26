@@ -9,7 +9,7 @@
 
 </head>
 <body>
-<form action="updateUser.do">
+<form action="updateUser.do" name="f">
   <div class="container-scroller" style="background: gray;">
     <div class="container-fluid page-body-wrapper">
       <div class="row">
@@ -34,13 +34,12 @@
                 	<div class="form-group">
                 	<label>생일</label>
                 	 <input type="text" id="userBirth"class="form-control p_input" value="${user.userBirth}">
-                	 
-					</div>
+          					</div>
                 
                 
                 <div class="form-group d-flex align-items-center justify-content-between">
 		 <div class="text-center">
-					<input type="submit" value="회원정보 수정"  class="btn btn-primary btn-block enter-btn"/>
+					<input type="submit" value="회원정보 수정" class="btn btn-primary btn-block enter-btn"/>
 					<input type="button" value="취소"  class="btn btn-primary btn-block enter-btn"/>
 					
                 </div>

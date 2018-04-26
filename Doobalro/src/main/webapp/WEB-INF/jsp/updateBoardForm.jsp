@@ -40,41 +40,7 @@
 </head>
 <body>
 	<div class="wrapper">
-		<div class="sidebar" data-background-color="white"
-			data-active-color="danger">
-
-			<!--
-		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
-		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
-	-->
-			<div class="sidebar-wrapper">
-				<div class="logo">
-					<a href="http://www.creative-tim.com" class="simple-text">
-						Doobalro </a>
-				</div>
-
-				<ul class="nav">
-					<li><a href="weather.jsp"> <i class="ti-shine"></i>
-							<p>날씨</p>
-					</a></li>
-					<li><a href="air.jsp"> <i class="ti-cloud"></i>
-							<p>대기질</p>
-					</a></li>
-					<li><a href="accident.jsp"> <i class="ti-bar-chart "></i>
-							<p>자전거 사고</p>
-					</a></li>
-					<li><a href="Bike.do"> <i class="ti-direction "></i>
-							<p>전국 거치소 현황</p>
-					</a></li>
-					<li class="active"><a href="./listBoard.do"> <i class="ti-comment"></i>
-							<p>게시판</p>
-					</a></li>
-					<li><a href="maps.html"> <i class="ti-map"></i>
-							<p>지도</p>
-					</a></li>
-				</ul>
-			</div>
-		</div>
+		<jsp:include page="menu.jsp" />
 
 		<div class="main-panel">
 			<!-- 우측 상단 내비게이션 바 -->

@@ -58,10 +58,10 @@ public class UserDAO implements UserDaoFrame{
 		
 		if(flag) {
 			mapper.login(vo);
-			return "로그인 성공";
+			return "濡쒓렇�씤 �꽦怨�";
 		}
 		
-		return "로그인 실패";
+		return "濡쒓렇�씤 �떎�뙣";
 	}
 	
 	@Override
@@ -78,21 +78,21 @@ public class UserDAO implements UserDaoFrame{
 		
 		if(flag) {
 			mapper.addUser(vo);
-			return "가입 성공";
+			return "媛��엯 �꽦怨�";
 		}		
-		return "휴대폰 번호 중복으로 인한 가입 실패";		
+		return "�쑕���룿 踰덊샇 以묐났�쑝濡� �씤�븳 媛��엯 �떎�뙣";		
 	}
 	@Override
 	public String deleteUser(UserVO vo) {
 		mapper.deleteUser(vo);
-		return "유저 탈퇴 성공";
+		return "�쑀�� �깉�눜 �꽦怨�";
 	}
 	@Override
 	public String updateUser(UserVO vo) {
 		if(mapper.updateUser(vo)==1) {
-			return "변경 성공";
+			return "蹂�寃� �꽦怨�";
 		}		
-		return "휴대폰 번호 중복 또는 이름 중복으로 인한 변경 실패";
+		return "�쑕���룿 踰덊샇 以묐났 �삉�뒗 �씠由� 以묐났�쑝濡� �씤�븳 蹂�寃� �떎�뙣";
 		
 		
 	}
@@ -101,7 +101,7 @@ public class UserDAO implements UserDaoFrame{
 	public String pwFind(UserVO vo) {
 		String result = mapper.pwFind(vo);
 		if(result.isEmpty()) {
-			return "해당 사항 유저 없음";
+			return "�빐�떦 �궗�빆 �쑀�� �뾾�쓬";
 		}
 		return result;
 	}
@@ -117,9 +117,20 @@ public class UserDAO implements UserDaoFrame{
 	@Override
 	public String changePw(UserVO vo) {
 		if(mapper.changePw(vo)==1) {
-			return "변경 완료";
+			return "蹂�寃� �셿猷�";
 		}		
-		return "휴대폰번호 또는 생년월일 불일치";
+		return "�쑕���룿踰덊샇 �삉�뒗 �깮�뀈�썡�씪 遺덉씪移�";
 	}
+	@Override
+	public boolean checkId(UserVO vo) {
+		
+		String user = mapper.idcheck(vo);
+		if(user != null) {
+			return false;
+	}
+		else {
+			return true;
+		}
 	
+	}	
 }

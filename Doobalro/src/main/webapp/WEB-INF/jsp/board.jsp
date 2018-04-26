@@ -5,6 +5,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
+<script language="JavaScript">
+	//post방식
+	function updateReply() {
+	 	f1.action = "updateReply.do";
+		f1.submit();
+			
+	}
+
+
+</script>
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="apple-touch-icon" sizes="76x76"
 	href="assets/img/apple-icon.png">
@@ -41,42 +54,7 @@
 </head>
 <body>
 	<div class="wrapper">
-		<div class="sidebar" data-background-color="white"
-			data-active-color="danger">
-
-			<!--
-		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
-		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
-	-->
-			<div class="sidebar-wrapper">
-				<div class="logo">
-					<a href="http://www.creative-tim.com" class="simple-text">
-						Doobalro </a>
-				</div>
-
-				<ul class="nav">
-					<li><a href="weather.jsp"> <i class="ti-shine"></i>
-							<p>날씨</p>
-					</a></li>
-					<li><a href="air.jsp"> <i class="ti-cloud"></i>
-							<p>대기질</p>
-					</a></li>
-					<li><a href="accident.jsp"> <i class="ti-bar-chart "></i>
-							<p>자전거 사고</p>
-					</a></li>
-					<li><a href="Bike.do"> <i class="ti-direction "></i>
-							<p>전국 거치소 현황</p>
-					</a></li>
-					<li class="active"><a href="./listBoard.do"> <i
-							class="ti-comment"></i>
-							<p>게시판</p>
-					</a></li>
-					<li><a href="maps.html"> <i class="ti-map"></i>
-							<p>지도</p>
-					</a></li>
-				</ul>
-			</div>
-		</div>
+		<jsp:include page="menu.jsp" />
 
 		<div class="main-panel">
 			<!-- 우측 상단 내비게이션 바 -->
@@ -148,6 +126,117 @@
 						</div>
 					</div>
 				</div>
+				<!--댓글  -->
+
+				
+			
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-11">
+							<div class="card">
+								<div class="header">
+									<h4 class="title">댓글</h4>
+									<br>
+								</div>
+								
+								<div class="content table-responsive">
+									<input id="boardNum" type="hidden" name="boardNum"
+										value="${board.boardNum }"> <input id="UserName"
+										type="hidden" name="userName" value="${user.userName }">
+									<input id="boardWriter" type="hidden" name="boardWriter"
+										value="${board.boardWriter }">
+										
+											
+																		
+										<!-- <table class="table table-striped"> -->
+										<table>
+											<tr>
+													<td width="10%" bgcolor="E6FFEF">작성자</td>
+													<td width="50%" bgcolor="E6FFEF">내  용</td>
+													<td width="25%" bgcolor="E6FFEF">날  짜</td>
+													<td width="10%" bgcolor="E6FFEF">수정</td>
+													<td width="10%" bgcolor="E6FFEF">삭제</td>
+												
+											</tr>
+											<%-- <td>${replys}</td> --%>
+												
+											 <c:forEach items="${replys}" var="reply">
+										
+										
+											<tr>																							
+												 
+													<td width="10%">${reply.replyWriter} </td>
+													
+													<!--자기댓글 -->
+													<c:if test="${reply.replyWriter == user.userName}">
+														<td width="50%">
+													<form action="updateReply.do" method="post">
+														<input id="updatereplyContent" name="updatereplyContent" type="text" value="${reply.replyContent}" > </td>
+																									
+														</c:if>
+														<!-- 상대댓글 -->
+														<c:if test="${reply.replyWriter != user.userName}">
+															<td width="50%">${reply.replyContent}</td>
+														</c:if>
+														<td width="25%">${reply.replyDate} </td>
+														<c:if test="${reply.replyWriter == user.userName}">													
+																				
+																																						
+														 <input type="hidden"  name="replyNum1" value="${reply.replyNum}">
+														 <input id="boardNum" type="hidden" name="boardNum"	value="${board.boardNum }">
+																							
+		 												<td width="10%"> 		
+		 																						 
+		 												<input type="submit" value="수정" ></td>
+	 												</form>
+													<td width="10%">
+													<input type="button" value="삭제" onclick="location.href='deleteReply.do?replyNum=${reply.replyNum}&boardNum=${board.boardNum}'"></td>													
+																										
+													</c:if>
+													
+											</c:forEach>
+											</tr>
+											 
+											
+										</table> 
+										
+										
+										<form action="addReply.do" method="POST">
+										<input id="boardNum" type="hidden" name="boardNum"
+										value="${board.boardNum }"> <input id="UserName"
+										type="hidden" name="userName" value="${user.userName}">
+										
+										<table>	
+											<tr>
+												<td width="40%" bgcolor="E6FFEF">작성자</td>
+												<td width="40%" bgcolor="E6FFEF">내  용</td>
+												<td width="20%" bgcolor="E6FFEF"></td>
+												
+											</tr>
+											<tr>
+												<td width="10%"><label>${user.userName}</label></td>
+												<td width="40%"><input type="text" name="replyContent"></td>										
+												<td><input type="submit" value="등록"></td>			
+											</tr>							
+										</table>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				
+				
+				
+				
+
+
+
+
 
 				<footer class="footer">
 				<div class="container-fluid">

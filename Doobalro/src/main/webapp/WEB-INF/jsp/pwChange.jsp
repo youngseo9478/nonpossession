@@ -4,16 +4,18 @@
 <html>
 <head>
   <!-- Required meta tags -->
-  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>로그인 페이지</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="./css/style.css">
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"
+	type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="js/pwfind.js?ver=2"></script>
 </head>
 <body>
 
 <body>
-<form action="changePw.do">
+<form action="changePw.do" name="f">
   <div class="container-scroller" style="background: gray;">
     <div class="container-fluid page-body-wrapper">
       <div class="row">
@@ -36,8 +38,8 @@
             			<input type="hidden"  name="userName" value="${userName}">
 		
 		 <div class="text-center">
-					<input type="submit" value="비밀번호 수정"  class="btn btn-primary btn-block enter-btn""/>
-					<input type="button" value="취소"  class="btn btn-primary btn-block enter-btn""/>
+					<input type="submit" value="비밀번호 수정"  class="btn btn-primary btn-block enter-btn" onclick="if(!pwfind(this.form)){return false;}"/>
+				   	<input type="button" value="취소" class="btn btn-primary btn-block enter-btn"	 onclick="loginpage()">
 					
                 </div>
           

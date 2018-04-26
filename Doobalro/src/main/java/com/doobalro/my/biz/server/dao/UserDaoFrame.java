@@ -10,4 +10,5 @@ public interface UserDaoFrame {
 	public String pwFind(UserVO vo);
 	public UserVO getUser(UserVO vo);
 	public String changePw(UserVO vo);
+	public boolean checkId(UserVO vo);
 }

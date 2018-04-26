@@ -7,5 +7,6 @@
 		<mapper class="com.doobalro.my.biz.mapper.UserMapper"/>
 		<mapper class="com.doobalro.my.biz.mapper.BoardMapper"/>
 		<mapper class="com.doobalro.my.biz.mapper.ReplyMapper"/>
+		<mapper class="com.doobalro.my.biz.mapper.WeatherMapper"/>
 	</mappers>
 </configuration>
