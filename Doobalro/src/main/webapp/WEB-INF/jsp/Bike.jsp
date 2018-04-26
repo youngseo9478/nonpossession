@@ -23,10 +23,6 @@ function logout() {
 	name='viewport' />
 <meta name="viewport" content="width=device-width" />
 
-
-<!-- Animation library for notifications   -->
-<link href="assets/css/animate.min.css" rel="stylesheet" />
-
 <!-- Bootstrap core CSS     -->
 <link href="css/bootstrap.min.css" rel="stylesheet" />
 
@@ -46,7 +42,37 @@ function logout() {
 <form action="" name="f">
 
 	<div class="wrapper">
-		<jsp:include page="menu.jsp" />
+		<div class="sidebar" data-background-color="white"
+			data-active-color="danger">
+			<div class="sidebar-wrapper">
+				<div class="logo">
+					<a href="http://www.creative-tim.com" class="simple-text">
+						Doobalro </a>
+				</div>
+
+				<ul class="nav">
+					<li><a href="weatherList.do"> <i
+							class="ti-shine"></i>
+							<p>날씨</p>
+					</a></li>
+					<li><a href="air.jsp"> <i class="ti-cloud"></i>
+							<p>대기질</p>
+					</a></li>
+					<li><a href="creAccident.do"> <i class="ti-bar-chart "></i>
+							<p>자전거 사고</p>
+					</a></li>
+					<li class="active"><a href="Bike.do"> <i class="ti-direction "></i>
+							<p>전국 거치소 현황</p>
+					</a></li>
+					<li><a href="./listBoard.do"> <i class="ti-comment"></i>
+							<p>게시판</p>
+					</a></li>
+					<li><a href="maps.html"> <i class="ti-map"></i>
+							<p>지도</p>
+					</a></li>
+				</ul>
+			</div>
+		</div>
 
 		<div class="main-panel">
 			<nav class="navbar navbar-default">

@@ -15,10 +15,6 @@
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
 	name='viewport' />
 <meta name="viewport" content="width=device-width" />
-
-<!-- Animation library for notifications   -->
-<link href="assets/css/animate.min.css" rel="stylesheet" />
-
 <!-- Bootstrap core CSS     -->
 <link href="css/bootstrap.min.css" rel="stylesheet" />
 
@@ -43,19 +39,21 @@
 
 <script type="text/javascript">
 	$(function() {
+		var map;
 		var beaches;
+		var contentString = [];
 		$.ajax({
 			url : "weatherList.do",
 			method : "POST",
 			type : "JSON",
 			success : function(data) {
 				beaches = data.list;
-				google.maps.event.addDomListener(window, 'load', initMap);
+			//google.maps.event.addDomListener(window, 'load', initMap);
 			}
 		})
 
 		function initMap() {
-			var map = new google.maps.Map(document.getElementById('map'), {
+			map = new google.maps.Map(document.getElementById('map'), {
 				zoom : 10,
 				center : {
 					lat : 37.5653133,
@@ -63,37 +61,23 @@
 				}
 			});
 
-			setMarkers(map);
+			//map.infowindow = new google.maps.InfoWindow();
+
+			setMarkers();
 		}
 
-		// Data for the markers consisting of a name, a LatLng and a zIndex for the
-		// order in which these markers should display on top of each other.
-
-		function setMarkers(map) {
-			// Adds markers to the map.
-
-			// Marker sizes are expressed as a Size of X,Y where the origin of the image
-			// (0,0) is located in the top left of the image.
-
-			// Origins, anchor positions and coordinates of the marker increase in the X
-			// direction to the right and in the Y direction down.
+		function setMarkers() {
 			var image = {
 				url : 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-				// This marker is 20 pixels wide by 32 pixels high.
 				size : new google.maps.Size(20, 32),
-				// The origin for this image is (0, 0).
 				origin : new google.maps.Point(0, 0),
-				// The anchor for this image is the base of the flagpole at (0, 32).
 				anchor : new google.maps.Point(0, 32)
 			};
-			// Shapes define the clickable region of the icon. The type defines an HTML
-			// <area> element 'poly' which traces out a polygon as a series of X,Y points.
-			// The final coordinate closes the poly by connecting to the first coordinate.
 			var shape = {
 				coords : [ 1, 1, 1, 20, 18, 20, 18, 1 ],
 				type : 'poly'
 			};
-			for (var i = 0; i < beaches.length; i++) {
+			for (var i = 0; i < Object.keys(beaches).length; i++) {
 				var beach = beaches[i];
 				var marker = new google.maps.Marker({
 					position : {
@@ -104,10 +88,33 @@
 					icon : image,
 					shape : shape,
 					title : beach.name,
-					zIndex : (i + 1)
+					zIndex : (i + 1),
+					animation : google.maps.Animation.DROP
+				});
+
+				var infowindow = new google.maps.InfoWindow({
+					content : beach.info
+				});
+				
+				mark(marker, infowindow);
+			}
+			
+			function mark(marker, infowindow) {
+				google.maps.event.addListener(marker, "mouseover", function() {
+					if (marker.getAnimation() != null) { // Bounce
+						marker.setAnimation(null);
+					} else {
+						marker.setAnimation(google.maps.Animation.BOUNCE);
+					}
+					infowindow.open(map, marker);
+				});
+				google.maps.event.addListener(marker, "mouseout", function() {
+					marker.setAnimation(null);
+					infowindow.close();
 				});
 			}
 		}
+		google.maps.event.addDomListener(window, 'load', initMap);
 	})
 </script>
 
@@ -132,7 +139,7 @@
 					<li><a href="air.jsp"> <i class="ti-cloud"></i>
 							<p>대기질</p>
 					</a></li>
-					<li><a href="accident.jsp"> <i class="ti-bar-chart "></i>
+					<li><a href="creAccident.do"> <i class="ti-bar-chart "></i>
 							<p>자전거 사고</p>
 					</a></li>
 					<li><a href="Bike.do"> <i class="ti-direction "></i>
@@ -168,10 +175,11 @@
 				<div class="container-fluid">
 					<div class="card card-map">
 						<div class="header">
-							<h4 class="title">Google Maps</h4>
+							<h4 class="title">지역별 날씨를 확인한 후 자전거를 타세요! :D</h4>
 						</div>
 						<div class="map">
 							<div id="map"></div>
+							
 						</div>
 					</div>
 				</div>

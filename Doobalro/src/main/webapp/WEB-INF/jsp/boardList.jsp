@@ -19,10 +19,6 @@
 	name='viewport' />
 <meta name="viewport" content="width=device-width" />
 
-
-<!-- Animation library for notifications   -->
-<link href="assets/css/animate.min.css" rel="stylesheet" />
-
 <!-- Bootstrap core CSS     -->
 <link href="css/bootstrap.min.css" rel="stylesheet" />
 

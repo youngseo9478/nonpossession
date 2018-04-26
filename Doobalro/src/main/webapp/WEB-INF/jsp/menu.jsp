@@ -27,7 +27,7 @@
 					<li><a href="air.jsp"> <i class="ti-cloud"></i>
 							<p>대기질</p>
 					</a></li>
-					<li><a href="accident.jsp"> <i class="ti-bar-chart "></i>
+					<li><a href="creAccident.do"> <i class="ti-bar-chart "></i>
 							<p>자전거 사고</p>
 					</a></li>
 					<li><a href="Bike.do"> <i class="ti-direction "></i>

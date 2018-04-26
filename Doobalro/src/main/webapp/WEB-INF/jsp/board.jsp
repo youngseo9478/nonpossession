@@ -32,10 +32,6 @@
 	name='viewport' />
 <meta name="viewport" content="width=device-width" />
 
-
-<!-- Animation library for notifications   -->
-<link href="assets/css/animate.min.css" rel="stylesheet" />
-
 <!-- Bootstrap core CSS     -->
 <link href="css/bootstrap.min.css" rel="stylesheet" />
 
@@ -107,7 +103,7 @@
 											<tr>
 												<td colspan="4" align="center"><a type="button"
 													href="./listBoard.do" class="btn btn-info btn-fill btn-wd">뒤로</a>
-													<c:set var="userName" value="${user.userName }"></c:set>
+													<c:set var="userName" value="${user.userName }"/>
 													<c:choose>
 														<c:when test="${board.boardWriter eq userName}">
 															<a type='button' class='btn btn-info btn-fill btn-wd'

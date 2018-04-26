@@ -8,9 +8,24 @@ public class WeatherVO {
 	String status;
 	double tmp;
 	double wind;
+	String info;
 	public WeatherVO() {
 	}
+	public WeatherVO(double lat, double lon, String name, String nowTime, String status, double tmp, double wind,
+			String info) {
+		super();
+		this.lat = lat;
+		this.lon = lon;
+		this.name = name;
+		this.nowTime = nowTime;
+		this.status = status;
+		this.tmp = tmp;
+		this.wind = wind;
+		this.info = info;
+	}
+
 	public WeatherVO(double lat, double lon, String name, String nowTime, String status, double tmp, double wind) {
+		super();
 		this.lat = lat;
 		this.lon = lon;
 		this.name = name;
@@ -61,15 +76,23 @@ public class WeatherVO {
 	public void setWind(double wind) {
 		this.wind = wind;
 	}
+	
+	public String getInfo() {
+		return info;
+	}
+	public void setInfo(String info) {
+		this.info = info;
+	}
 	@Override
 	public String toString() {
 		return "WeatherVO [lat=" + lat + ", lon=" + lon + ", name=" + name + ", nowTime=" + nowTime + ", status="
-				+ status + ", tmp=" + tmp + ", wind=" + wind + "]";
+				+ status + ", tmp=" + tmp + ", wind=" + wind + ", info=" + info + "]";
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((info == null) ? 0 : info.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(lat);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -93,6 +116,11 @@ public class WeatherVO {
 		if (getClass() != obj.getClass())
 			return false;
 		WeatherVO other = (WeatherVO) obj;
+		if (info == null) {
+			if (other.info != null)
+				return false;
+		} else if (!info.equals(other.info))
+			return false;
 		if (Double.doubleToLongBits(lat) != Double.doubleToLongBits(other.lat))
 			return false;
 		if (Double.doubleToLongBits(lon) != Double.doubleToLongBits(other.lon))

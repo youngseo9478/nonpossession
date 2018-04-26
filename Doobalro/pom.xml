@@ -23,6 +23,12 @@
 		</repository>
 	</repositories>
 	<dependencies>
+		<!-- Rserve -->
+		<dependency>
+		    <groupId>org.rosuda.REngine</groupId>
+		    <artifactId>Rserve</artifactId>
+		    <version>1.8.1</version>
+		</dependency>
 		<!-- Jackson2 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
