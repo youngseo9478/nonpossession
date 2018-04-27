@@ -38,9 +38,10 @@
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXHAz-sDb9rPjKRcDHTtMwmlpmAXAfdqc"></script>
 
 <script type="text/javascript">
+
 	$(function() {
-		var map;
 		var bikes;
+		var map;
 		var contentString = [];
 		$.ajax({
 			url : "Bike.do",
@@ -49,6 +50,8 @@
 			success : function(data) {
 				bikes = data.list;
 			//google.maps.event.addDomListener(window, 'load', initMap);
+// 				google.maps.event.addDomListener(window, 'load', initMap);
+				initMap();
 			}
 		})
 
@@ -77,7 +80,7 @@
 				coords : [ 1, 1, 1, 20, 18, 20, 18, 1 ],
 				type : 'poly'
 			};
-			for (var i = 0; i < Object.keys(beaches).length; i++) {
+			for (var i = 0; i < Object.keys(bikes).length; i++) {
 				var bike = bikes[i];
 				var marker = new google.maps.Marker({
 					position : {
@@ -95,10 +98,10 @@
 				var infowindow = new google.maps.InfoWindow({
 					content : bike.info
 				});
-				
+
 				mark(marker, infowindow);
 			}
-			
+
 			function mark(marker, infowindow) {
 				google.maps.event.addListener(marker, "mouseover", function() {
 					if (marker.getAnimation() != null) { // Bounce
@@ -114,7 +117,7 @@
 				});
 			}
 		}
-		google.maps.event.addDomListener(window, 'load', initMap);
+		
 	})
 </script>
 
@@ -132,8 +135,7 @@
 				</div>
 
 				<ul class="nav">
-					<li><a href="weatherList.do"> <i
-							class="ti-shine"></i>
+					<li><a href="weatherList.do"> <i class="ti-shine"></i>
 							<p>날씨</p>
 					</a></li>
 					<li><a href="air.jsp"> <i class="ti-cloud"></i>
@@ -142,7 +144,8 @@
 					<li><a href="creAccident.do"> <i class="ti-bar-chart "></i>
 							<p>자전거 사고</p>
 					</a></li>
-					<li class="active"><a href="Bike.do"> <i class="ti-direction "></i>
+					<li class="active"><a href="Bike.do"> <i
+							class="ti-direction "></i>
 							<p>전국 거치소 현황</p>
 					</a></li>
 					<li><a href="./listBoard.do"> <i class="ti-comment"></i>
@@ -179,7 +182,7 @@
 						</div>
 						<div class="map">
 							<div id="map"></div>
-							
+
 						</div>
 					</div>
 				</div>

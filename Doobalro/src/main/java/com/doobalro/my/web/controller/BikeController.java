@@ -41,12 +41,12 @@ public class BikeController {
 	}
 	
 	@RequestMapping(value = "Bike.do", method = RequestMethod.GET)
-	public String weatherListGo() {//유저 체크 필요 없을 시 로그인폼으로~
+	public String bikeListGo() {//유저 체크 필요 없을 시 로그인폼으로~
 		return "bikeStatus";
 	}
 
 	@RequestMapping(value = "Bike.do", method = RequestMethod.POST)
-	public ModelAndView weatherList() {
+	public ModelAndView bikeList() {
 		List<BikeStatusVO> list = BikeStatusService.getAllData();
 		for (int i = 0; i < list.size(); i++) {
 			String info = "<div id='content'><h3 id='firstHeading' class='firstHeading'>" + list.get(i).getStation_name()
@@ -55,7 +55,7 @@ public class BikeController {
 			list.get(i).setInfo(info);
 		}
 		HashMap<String, Object> map = new HashMap<>();
-		System.out.println(list);
+//		System.out.println(list);
 		map.put("list", list);
 		return new ModelAndView("jsonView", map);
 	}
