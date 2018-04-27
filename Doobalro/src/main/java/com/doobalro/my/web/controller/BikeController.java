@@ -27,7 +27,6 @@ public class BikeController {
 	@RequestMapping("/creAccident.do") //로그인 페이지로
 	public String Accident(HttpServletRequest req){
 		BikeService.Accident();
-		req.getSession().getServletContext().getRealPath("./image/");
 		return "redirect:AccidentTime.do";
 	}
 	
@@ -41,24 +40,27 @@ public class BikeController {
 	}
 	
 	@RequestMapping(value = "Bike.do", method = RequestMethod.GET)
-	public String bikeListGo() {//유저 체크 필요 없을 시 로그인폼으로~
-		return "bikeStatus";
+	public String bikeListGo(HttpServletRequest req) {//유저 체크 필요 없을 시 로그인폼으로~
+		if(req.getSession().getAttribute("user") == null) {
+			return "login";
+		}else {
+			return "bikeStatus";
+		}
 	}
 
-	@RequestMapping(value = "Bike.do", method = RequestMethod.POST)
-	public ModelAndView bikeList() {
-		List<BikeStatusVO> list = BikeStatusService.getAllData();
-		for (int i = 0; i < list.size(); i++) {
-			String info = "<div id='content'><h3 id='firstHeading' class='firstHeading'>" + list.get(i).getStation_name()
-					+ "</h3><div id='bodyContent'>" + "<p><b>거치대수 : "+list.get(i).getTotal_bike()+"</b><br><b>대여가능 자전거 : </b>" + list.get(i).getAvailable_bike() + "<br>"
-					+"</p></div></div>";
-			list.get(i).setInfo(info);
-		}
-		HashMap<String, Object> map = new HashMap<>();
-//		System.out.println(list);
-		map.put("list", list);
-		return new ModelAndView("jsonView", map);
-	}
+	  @RequestMapping(value = "Bike.do", method = RequestMethod.POST)
+	   public ModelAndView bikeList() {
+	      List<BikeStatusVO> list = BikeStatusService.getAllData();
+	      for (int i = 0; i < list.size(); i++) {
+	         String info = "<div id='content'><h3 id='firstHeading' class='firstHeading'>" + list.get(i).getStation_name()
+	               + "</h3><div id='bodyContent'>" + "<p><b>거치대수 : "+list.get(i).getTotal_bike()+"</b><br><b>대여가능 자전거 : </b>" + list.get(i).getAvailable_bike() + "<br>"
+	               +"</p></div></div>";
+	         list.get(i).setInfo(info);
+	      }
+	      HashMap<String, Object> map = new HashMap<>();
+	      map.put("list", list);
+	      return new ModelAndView("jsonView", map);
+	   }
 	
 	
 	

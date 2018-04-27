@@ -38,7 +38,6 @@
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXHAz-sDb9rPjKRcDHTtMwmlpmAXAfdqc"></script>
 
 <script type="text/javascript">
-
 	$(function() {
 		var bikes;
 		var map;
@@ -49,8 +48,8 @@
 			type : "JSON",
 			success : function(data) {
 				bikes = data.list;
-			//google.maps.event.addDomListener(window, 'load', initMap);
-// 				google.maps.event.addDomListener(window, 'load', initMap);
+				//google.maps.event.addDomListener(window, 'load', initMap);
+				//             google.maps.event.addDomListener(window, 'load', initMap);
 				initMap();
 			}
 		})
@@ -117,7 +116,7 @@
 				});
 			}
 		}
-		
+
 	})
 </script>
 
@@ -138,7 +137,7 @@
 					<li><a href="weatherList.do"> <i class="ti-shine"></i>
 							<p>날씨</p>
 					</a></li>
-					<li><a href="air.jsp"> <i class="ti-cloud"></i>
+					<li><a href="AirQuality.do"> <i class="ti-cloud"></i>
 							<p>대기질</p>
 					</a></li>
 					<li><a href="creAccident.do"> <i class="ti-bar-chart "></i>
@@ -178,7 +177,7 @@
 				<div class="container-fluid">
 					<div class="card card-map">
 						<div class="header">
-							<h4 class="title">전국의 이용 가능한 공공자전거 현황을 확인하세요!:D </h4>
+							<h4 class="title">전국의 이용 가능한 공공자전거 현황을 확인하세요! :D</h4>
 						</div>
 						<div class="map">
 							<div id="map"></div>

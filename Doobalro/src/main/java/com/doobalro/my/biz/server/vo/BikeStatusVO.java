@@ -9,13 +9,14 @@ public class BikeStatusVO {
 	int available_bike;
 	String nowdate;
 	String info;
+	String location;
 	
 	public BikeStatusVO() {
 		super();
 	}
-	
+
 	public BikeStatusVO(String station_name, String address, double lat, double lon, int total_bike, int available_bike,
-			String nowdate, String info) {
+			String nowdate, String info, String location) {
 		super();
 		this.station_name = station_name;
 		this.address = address;
@@ -25,47 +26,61 @@ public class BikeStatusVO {
 		this.available_bike = available_bike;
 		this.nowdate = nowdate;
 		this.info = info;
+		this.location = location;
 	}
 
 	public String getStation_name() {
 		return station_name;
 	}
+
 	public void setStation_name(String station_name) {
 		this.station_name = station_name;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public double getLat() {
 		return lat;
 	}
+
 	public void setLat(double lat) {
 		this.lat = lat;
 	}
+
 	public double getLon() {
 		return lon;
 	}
+
 	public void setLon(double lon) {
 		this.lon = lon;
 	}
+
 	public int getTotal_bike() {
 		return total_bike;
 	}
+
 	public void setTotal_bike(int total_bike) {
 		this.total_bike = total_bike;
 	}
+
 	public int getAvailable_bike() {
 		return available_bike;
 	}
+
 	public void setAvailable_bike(int available_bike) {
 		this.available_bike = available_bike;
 	}
+
 	public String getNowdate() {
 		return nowdate;
 	}
+
 	public void setNowdate(String nowdate) {
 		this.nowdate = nowdate;
 	}
@@ -78,11 +93,12 @@ public class BikeStatusVO {
 		this.info = info;
 	}
 
-	@Override
-	public String toString() {
-		return "BikeStatusVO [station_name=" + station_name + ", address=" + address + ", lat=" + lat + ", lon=" + lon
-				+ ", total_bike=" + total_bike + ", available_bike=" + available_bike + ", nowdate=" + nowdate
-				+ ", info=" + info + "]";
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	@Override
@@ -95,6 +111,7 @@ public class BikeStatusVO {
 		long temp;
 		temp = Double.doubleToLongBits(lat);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((location == null) ? 0 : location.hashCode());
 		temp = Double.doubleToLongBits(lon);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((nowdate == null) ? 0 : nowdate.hashCode());
@@ -126,6 +143,11 @@ public class BikeStatusVO {
 			return false;
 		if (Double.doubleToLongBits(lat) != Double.doubleToLongBits(other.lat))
 			return false;
+		if (location == null) {
+			if (other.location != null)
+				return false;
+		} else if (!location.equals(other.location))
+			return false;
 		if (Double.doubleToLongBits(lon) != Double.doubleToLongBits(other.lon))
 			return false;
 		if (nowdate == null) {
@@ -142,5 +164,13 @@ public class BikeStatusVO {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "BikeStatusVO [station_name=" + station_name + ", address=" + address + ", lat=" + lat + ", lon=" + lon
+				+ ", total_bike=" + total_bike + ", available_bike=" + available_bike + ", nowdate=" + nowdate
+				+ ", info=" + info + ", location=" + location + "]";
+	}
+	
 	
 }

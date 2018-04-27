@@ -197,7 +197,7 @@
 											
 										</table> 
 										
-										
+										<br><br><hr>
 										<form action="addReply.do" method="POST">
 										<input id="boardNum" type="hidden" name="boardNum"
 										value="${board.boardNum }"> <input id="UserName"

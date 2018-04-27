@@ -24,7 +24,7 @@
 					<li><a href="weatherList.do"> <i class="ti-shine"></i>
 							<p>날씨</p>
 					</a></li>
-					<li><a href="air.jsp"> <i class="ti-cloud"></i>
+					<li><a href="AirQuality.do"> <i class="ti-cloud"></i>
 							<p>대기질</p>
 					</a></li>
 					<li><a href="creAccident.do"> <i class="ti-bar-chart "></i>

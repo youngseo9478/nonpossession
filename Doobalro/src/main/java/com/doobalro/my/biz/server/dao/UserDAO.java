@@ -58,29 +58,38 @@ public class UserDAO implements UserDaoFrame{
 		
 		if(flag) {
 			mapper.login(vo);
-			return "濡쒓렇�씤 �꽦怨�";
+			return "로그인 성공";
 		}
 		
-		return "濡쒓렇�씤 �떎�뙣";
+		return "로그인 실패";
 	}
 	
 	@Override
 	public String addUser(UserVO vo) {
 		List<UserVO> li = this.getAllUser();
 		Iterator<UserVO> iter = li.iterator();
-		boolean flag = true;
-		
+		boolean flag1 = false;
+		boolean flag2 = false;
+		UserVO uvo;
 		while(iter.hasNext()) {
-			if(iter.next().getUserPhone().equals(vo.getUserPhone())) {
-				flag = false;
+			uvo = iter.next();
+			if(uvo.getUserPhone().equals(vo.getUserPhone())) {
+				flag1 = true;
+				break;
+			}
+			if(uvo.getUserName().equals(vo.getUserName())) {
+				flag2 = true;
+				break;
 			}
 		}
-		
-		if(flag) {
+		if(flag1) {
+			return "가입되어 있는 휴대폰 번호입니다";
+		}else if(flag2) {
+			return "가입되어 있는 닉네임입니다";
+		}else {
 			mapper.addUser(vo);
-			return "媛��엯 �꽦怨�";
-		}		
-		return "�쑕���룿 踰덊샇 以묐났�쑝濡� �씤�븳 媛��엯 �떎�뙣";		
+			return "가입 성공";
+		}
 	}
 	@Override
 	public String deleteUser(UserVO vo) {

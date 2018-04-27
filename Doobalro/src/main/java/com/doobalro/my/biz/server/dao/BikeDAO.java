@@ -24,12 +24,12 @@ public class BikeDAO implements BikeDaoFrame{
 			con.eval("t_label <-paste(round_t1,'%')");
 			con.eval("r1<-c('#FF0000FF', '#FF8000FF', '#FFFF00FF', '#80FF00FF', '#00FF00FF', '#00FF80FF')");
 			con.eval("r2<-c( '#00FFFFFF', '#0080FFFF', '#0000FFFF', '#8000FFFF', '#FF00FFFF', '#FF0080FF')");
-			con.eval("jpeg('C:\\\\final\\\\nonpossession\\\\Doobalro\\\\src\\\\main\\\\webapp\\\\image\\\\time01_accident.jpg',width=700,height=600,units='px')");
+			con.eval("jpeg('C:\\\\Users\\\\student\\\\Desktop\\\\프로젝트\\\\Doobalro\\\\src\\\\main\\\\webapp\\\\image\\\\time01_accident.jpg',width=700,height=600,units='px')");
 			con.eval("pie3D(t1,,col=rainbow(length(t1)),cex=0.5,labels=t_label,explode=0.1)");
 			con.eval("legend(-0.9,-0.5,name[c(1:6)],cex=1.1,fill=r1)");
 			con.eval("legend(0.4,-0.5,name[c(7:12)],cex=1.1,fill=r2)");
 			con.eval("dev.off()");
-			con.eval("jpeg('C:\\\\final\\\\nonpossession\\\\Doobalro\\\\src\\\\main\\\\webapp\\\\image\\\\time02_accident.jpg',width=1000,height=1000,units='px')");
+			con.eval("jpeg('C:\\\\Users\\\\student\\\\Desktop\\\\프로젝트\\\\Doobalro\\\\src\\\\main\\\\webapp\\\\image\\\\time02_accident.jpg',width=1000,height=1000,units='px')");
 			con.eval("barplot(t1,main='시간대별 사고',xlab='시간',ylab='사고 발생수',names.arg=name,col=rainbow(length(t1)))");
 			con.eval("legend('topleft',name,cex=2,fill=rainbow(length(t1)))");
 			con.eval("dev.off()");
@@ -42,7 +42,7 @@ public class BikeDAO implements BikeDaoFrame{
 			con.eval("t3<-as.numeric(t2$t2)");
 			con.eval("t3_name<-t2$loc");
 			con.eval("t3_name<-as.character(t3_name)");
-			con.eval("jpeg('C:\\\\final\\\\nonpossession\\\\Doobalro\\\\src\\\\main\\\\webapp\\\\image\\\\loc_accident.jpg',width=1000,height=1000,units='px')");
+			con.eval("jpeg('C:\\\\Users\\\\student\\\\Desktop\\\\프로젝트\\\\Doobalro\\\\src\\\\main\\\\webapp\\\\image\\\\loc_accident.jpg',width=1000,height=1000,units='px')");
 			con.eval("barplot(t3,main='지역별 사고',xlab='지역',ylab='사고 발생수',names.arg=as.character(t2$loc),col=rainbow(length(t3)))");
 			con.eval("legend('topright',t3_name,cex=2,fill=rainbow(length(t3_name)))");
 			con.eval("dev.off()");

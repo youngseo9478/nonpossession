@@ -19,7 +19,7 @@ public interface BoardMapper {
 	@Delete("delete from Boards where boardNum = #{boardNum}")
 	public void deleteBoard(int boardNum);
 	
-	@Update("update boards set boardTitle= #{boardTitle}, boardContent = #{boardContent}, boardDate = #{boardDate} where boardNum = #{boardNum}")
+	@Update("update boards set boardTitle= #{boardTitle}, boardContent = #{boardContent}, boardDate = #{boardDate}, boardRCnt = #{boardRCnt} where boardNum = #{boardNum}")
 	public void updateBoard(BoardVO vo);
 	
 	@Select("select * from boards where ${condition} like '%'|| #{keyword} ||'%'")

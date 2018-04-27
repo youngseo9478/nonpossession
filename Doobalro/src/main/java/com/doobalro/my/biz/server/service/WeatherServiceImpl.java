@@ -19,4 +19,9 @@ public class WeatherServiceImpl implements WeatherService {
 	public List<WeatherVO> getAllData() {
 		return dao.getAllData();
 	}
+
+	@Override
+	public void AirQuality() {
+		dao.AirQuality();
+	}
 }

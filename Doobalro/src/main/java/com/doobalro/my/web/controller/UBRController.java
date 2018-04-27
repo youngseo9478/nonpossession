@@ -29,9 +29,7 @@ public class UBRController {
 	 * �뾽�뜲�씠�듃 �떆(�씠由�) �뿰愿��맂 蹂대뱶 諛� �뙎湲� �옉�꽦�옄 �씠由� �닔�젙 �븘�슂
 	 */
 	// Reply
-	SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd-HH-mm", Locale.KOREA);
-	Date Time = new Date();
-	String nowTime = fm.format(Time);
+
 
 	@Resource(name = "ReplyService")
 	ReplyService ReplyService;
@@ -86,7 +84,7 @@ public class UBRController {
 
 	////////////////////////////////////////////////////////////////
 
-	@RequestMapping(value = "/login.do", method = RequestMethod.POST) // �슖�돦裕꾬옙�쟽�뜝�럩逾�
+	@RequestMapping(value = "/login.do", method=RequestMethod.POST) // �슖�돦裕꾬옙�쟽�뜝�럩逾�
 	public ModelAndView login(HttpServletRequest req, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		UserVO uvo = new UserVO();
@@ -94,11 +92,12 @@ public class UBRController {
 		uvo.setUserPw(req.getParameter("userPw"));
 
 		String result = UserService.login(uvo);
-		if (result.equals("濡쒓렇�씤 �꽦怨�")) {
+		if (result.equals("로그인 성공")) {
 			uvo = UserService.getUser(uvo);
 			session.setAttribute("user", uvo); // �씠嫄� 瑗� �닔�젙
+			session.setAttribute("city", req.getParameter("city"));
 			System.out.println(uvo);
-			mav.setViewName("redirect:listBoard.do");
+			mav.setViewName("redirect:Bike.do");
 
 		} else {
 			mav.setViewName("login");
@@ -119,47 +118,81 @@ public class UBRController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/checkphone.do", method=RequestMethod.POST)
-	public ModelAndView checkId(String id, HttpSession session, HttpServletRequest req) {
-		System.out.println("체크아이디 컨트롤");
-		ModelAndView mav = new ModelAndView();
-		UserVO uvo = new UserVO();
-		uvo.setUserPhone(req.getParameter("userPhone"));
-		
-		System.out.println("유버폰:"+req.getParameter("userPhone"));
-			
-		boolean result=UserService.checkId(uvo);
-		
-		System.out.println("result값:"+result);
-		if(result) {
-			mav.addObject("idck","가입가능한 아이디입니다.");
-			
-		}
-		else {
-			mav.addObject("idck","가입불가능한 아이디입니다.");			
-		}	
-		mav.setViewName("adduser");
-		return mav;
-	}
 
 	@RequestMapping(value = "/addUser.do", method = RequestMethod.POST) // 占쎌돳占쎌뜚揶쏉옙占쎌뿯
 	public ModelAndView addUser(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		UserVO uvo = new UserVO();
+		String phone = req.getParameter("userPhone");
+		String birth = req.getParameter("userBirth");
+		
+		if(phone.equals("")) {
+			req.setAttribute("result", "휴대폰 번호를 입력해주세요");
+			mav.setViewName("adduser");
+			return mav;
+		}else if(req.getParameter("userName").equals("")) {
+			req.setAttribute("result", "이름을 입력해주세요");
+			mav.setViewName("adduser");
+			return mav;
+		}else if(birth.equals("")) {
+			req.setAttribute("result", "생년월일을 입력해주세요");
+			mav.setViewName("adduser");
+			return mav;
+		}else if(req.getParameter("userPw").equals("")) {
+			req.setAttribute("result", "패스워드를 입력해주세요");
+			mav.setViewName("adduser");
+			return mav;
+		}
+		
 
-		uvo.setUserName(req.getParameter("userName"));
-		uvo.setUserPhone(req.getParameter("userPhone"));
-		uvo.setUserPw(req.getParameter("userPw"));
-		uvo.setUserBirth(req.getParameter("userBirth"));
+		if(!(this.isNumber(phone))){
+			req.setAttribute("result", "Phone은 숫자만 기입 가능합니다.");
+			mav.setViewName("adduser");
+			return mav;
+		}else if(!(this.isNumber(birth))){
+			req.setAttribute("result", "생년월일은 숫자만 기입 가능합니다.");
+			mav.setViewName("adduser");
+			return mav;
+		}else {
+			UserVO uvo = new UserVO();
+			uvo.setUserName(req.getParameter("userName"));
+			uvo.setUserPhone(req.getParameter("userPhone"));
+			uvo.setUserPw(req.getParameter("userPw"));
+			uvo.setUserBirth(req.getParameter("userBirth"));
+			String result = UserService.addUser(uvo);
+			
+			if(result.equals("가입 성공")) {
+				mav.setViewName("login");
+				return mav;
+			}else {
+				req.setAttribute("result", result);
+				mav.setViewName("adduser");
+				return mav;
+			}
+			
+		}
+		
+		
 
-		System.out.println(uvo);
-
-		String result = UserService.addUser(uvo);
-		System.out.println(result);
-		mav.addObject("result", result);
-		mav.setViewName("redirect:loginForm.do");
-		return mav;
 	}
+	
+	public boolean isNumber(String str) {
+	    char tempCh;
+	    int dotCount = 0;
+	    boolean result = true;
+
+	    for (int i=0; i<str.length(); i++){
+	      tempCh= str.charAt(i);
+	      if ((int)tempCh < 48 || (int)tempCh > 57){
+	        if(tempCh!='.' || dotCount > 0){
+	          result = false;
+	          break;
+	        }else{
+	          dotCount++;
+	        }
+	      }
+	    }
+	    return result;
+	  }
 
 
 	@RequestMapping(value = "/updateUser.do") 
@@ -246,6 +279,9 @@ public class UBRController {
 ///////////////////////////////////////////////////////////////////////////
 	@RequestMapping(value = "/addReply.do", method = RequestMethod.POST)
 	public ModelAndView addReply(HttpServletRequest req) {
+		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd-HH-mm", Locale.KOREA);
+		Date Time = new Date();
+		String nowTime = fm.format(Time);
 		System.out.println("addreply");
 		ReplyVO rvo = new ReplyVO();
 
@@ -270,16 +306,12 @@ public class UBRController {
 	public ModelAndView deleteReply(HttpServletRequest req) {
 		System.out.println("딜리트 컨트롤러");
 		ReplyVO rvo = this.getReply((Integer.parseInt(req.getParameter("replyNum"))));
-
+		BoardVO bvo = this.getBoard((Integer.parseInt(req.getParameter("boardNum"))));
 		
-		rvo.setBoardNum(Integer.parseInt(req.getParameter("boardNum")));
 		rvo.setReplyContent(req.getParameter("replyContent"));
-		rvo.setReplyDate(nowTime);
-		rvo.setReplyWriter(req.getParameter("userName"));
-		
+		bvo.setBoardRCnt(bvo.getBoardRCnt()-1);
 		ReplyService.deleteReply(rvo);
-
-		
+		BoardService.updateBoard(bvo);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:getBoard.do?boardNum="+req.getParameter("boardNum")); // 占쎈퉸占쎈뼣 野껓옙 癰귣�諭뜻에占�~
 
@@ -288,6 +320,9 @@ public class UBRController {
 
 	@RequestMapping(value = "/updateReply.do", method = RequestMethod.POST)
 	public ModelAndView updateReply(HttpServletRequest req) {
+		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd-HH-mm", Locale.KOREA);
+		Date Time = new Date();
+		String nowTime = fm.format(Time);
 		ReplyVO rvo = new ReplyVO();
 		System.out.println("업데이트 컨트롤");
 		rvo=ReplyService.getReply(Integer.parseInt(req.getParameter("replyNum1")));
@@ -307,7 +342,9 @@ public class UBRController {
 	public ReplyVO getReply(int replyNum) {
 		return ReplyService.getReply(replyNum);
 	}
-	
+	public BoardVO getBoard(int boardNum) {
+		return BoardService.getBoard(boardNum);
+	}
 	
 	@RequestMapping("/listBoard.do")
 	public ModelAndView getAllBoard(HttpServletRequest req) {
@@ -341,6 +378,9 @@ public class UBRController {
 	@RequestMapping(value = "/addBoard.do")
 	public ModelAndView addboard(HttpServletRequest req, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd-HH-mm", Locale.KOREA);
+		Date Time = new Date();
+		String nowTime = fm.format(Time);
 		BoardVO bvo = new BoardVO();
 		UserVO uvo = (UserVO) session.getAttribute("user");
 		bvo.setBoardContent(req.getParameter("boardContent"));
@@ -356,15 +396,18 @@ public class UBRController {
 	@RequestMapping(value = "/updateBoard.do", method = RequestMethod.POST)
 	public ModelAndView updateboard(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
+		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd-HH-mm", Locale.KOREA);
+		Date Time = new Date();
+		String nowTime = fm.format(Time);
 		BoardVO bvo = new BoardVO();
 		bvo.setBoardContent(req.getParameter("boardContent"));
 		bvo.setBoardTitle(req.getParameter("boardTitle"));
 		bvo.setBoardDate(nowTime);
 		int boardNum = Integer.parseInt(req.getParameter("boardNum"));
 		bvo.setBoardNum(boardNum);
+		bvo.setBoardRCnt(BoardService.getBoard(Integer.parseInt(req.getParameter("boardNum"))).getBoardRCnt());
 		BoardService.updateBoard(bvo);
-		mav.addObject("board", BoardService.getBoard(boardNum));
-		mav.setViewName("board");
+		mav.setViewName("redirect:getBoard.do?boardNum="+boardNum);
 		// mav.setViewName("redirect:listBoard.do");
 		return mav;// �닔�젙�쓣 �솗�씤�븯�젮硫� �떎�떆 �겢由��빐 �뱾�뼱媛��빞�빐�꽌 踰덇굅濡�湲댄븳�뜲..萸�..�뀕
 	}

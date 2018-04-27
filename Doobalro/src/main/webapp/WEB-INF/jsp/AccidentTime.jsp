@@ -60,7 +60,7 @@
 					<li><a href="weatherList.do"> <i class="ti-shine"></i>
 							<p>날씨</p>
 					</a></li>
-					<li><a href="air.jsp"> <i class="ti-cloud"></i>
+					<li><a href="AirQuality.do"> <i class="ti-cloud"></i>
 							<p>대기질</p>
 					</a></li>
 					<li class="active"><a href="creAccident.do"> <i
@@ -98,11 +98,10 @@
 					<form action="" name="f">
 						<input type="radio" name="accident" checked="checked" value="시간" />시간
 						<input type="radio" name="accident" value="지역" />지역 <input
-							type="button" class="btn btn-info btn-fill btn-sm" value="조회"
-							onclick="checkit(this.form)" />
+							type="button" class="btn btn-info btn-fill btn-sm" value="조회" onclick="checkit(this.form)" />
 					</form>
 				</div>
-				<!-- 본문 내용 삽입 구간 -->
+				<br>
 				<table width="50%" height="50%" cellspacing="0" cellpadding="0"
 					border="1" align="center">
 					<tr align="center">

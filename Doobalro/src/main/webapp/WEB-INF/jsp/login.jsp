@@ -16,6 +16,7 @@
 
 <body>
 	<form name="f" method="post" action="login.do">
+		<input type="hidden" name="city" value="대전" />
 		<div style="background: gray;">
 			<div class="container-fluid page-body-wrapper">
 				<div class="row">

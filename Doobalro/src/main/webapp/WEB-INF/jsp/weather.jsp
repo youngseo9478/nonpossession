@@ -48,7 +48,8 @@
 			type : "JSON",
 			success : function(data) {
 				beaches = data.list;
-			//google.maps.event.addDomListener(window, 'load', initMap);
+				//google.maps.event.addDomListener(window, 'load', initMap);
+				initMap();
 			}
 		})
 
@@ -95,10 +96,10 @@
 				var infowindow = new google.maps.InfoWindow({
 					content : beach.info
 				});
-				
+
 				mark(marker, infowindow);
 			}
-			
+
 			function mark(marker, infowindow) {
 				google.maps.event.addListener(marker, "mouseover", function() {
 					if (marker.getAnimation() != null) { // Bounce
@@ -114,7 +115,7 @@
 				});
 			}
 		}
-		google.maps.event.addDomListener(window, 'load', initMap);
+		//google.maps.event.addDomListener(window, 'load', initMap);
 	})
 </script>
 
@@ -179,7 +180,7 @@
 						</div>
 						<div class="map">
 							<div id="map"></div>
-							
+
 						</div>
 					</div>
 				</div>

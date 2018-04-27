@@ -6,4 +6,5 @@ import com.doobalro.my.biz.server.vo.WeatherVO;
 
 public interface WeatherService {
 	public List<WeatherVO> getAllData();
+	public void AirQuality();
 }
