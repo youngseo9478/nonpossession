@@ -71,7 +71,7 @@
 														<option value="boardContent">내용</option>
 														<option value="boardWriter">작성자</option>
 												</select> <input name="keyword" type="text"> <input
-													type="submit" value="검색"></td>
+													type="submit" class="btn btn-info btn-fill" value="검색"></td>
 											</tr>
 										</table>
 									</form>

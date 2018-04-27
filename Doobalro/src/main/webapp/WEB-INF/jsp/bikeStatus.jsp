@@ -168,7 +168,7 @@
 							class="icon-bar bar1"></span> <span class="icon-bar bar2"></span>
 						<span class="icon-bar bar3"></span>
 					</button>
-					<a class="navbar-brand" href="#">Weather</a>
+					<a class="navbar-brand" href="#">Bike Status</a>
 				</div>
 			</div>
 			</nav>
@@ -178,7 +178,7 @@
 				<div class="container-fluid">
 					<div class="card card-map">
 						<div class="header">
-							<h4 class="title">지역별 날씨를 확인한 후 자전거를 타세요! :D</h4>
+							<h4 class="title">전국의 이용 가능한 공공자전거 현황을 확인하세요!:D </h4>
 						</div>
 						<div class="map">
 							<div id="map"></div>

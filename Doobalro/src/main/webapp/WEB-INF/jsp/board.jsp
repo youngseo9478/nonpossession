@@ -184,10 +184,10 @@
 																							
 		 												<td width="10%"> 		
 		 																						 
-		 												<input type="submit" value="수정" ></td>
+		 												<input type="submit" class="btn btn-info btn-fill btn-sm" value="수정" ></td>
 	 												</form>
 													<td width="10%">
-													<input type="button" value="삭제" onclick="location.href='deleteReply.do?replyNum=${reply.replyNum}&boardNum=${board.boardNum}'"></td>													
+													<input type="button" class="btn btn-info btn-fill btn-sm" value="삭제" onclick="location.href='deleteReply.do?replyNum=${reply.replyNum}&boardNum=${board.boardNum}'"></td>													
 																										
 													</c:if>
 													
@@ -213,7 +213,7 @@
 											<tr>
 												<td width="10%"><label>${user.userName}</label></td>
 												<td width="40%"><input type="text" name="replyContent"></td>										
-												<td><input type="submit" value="등록"></td>			
+												<td><input type="submit" class="btn btn-info btn-fill btn-sm" value="등록"></td>			
 											</tr>							
 										</table>
 										

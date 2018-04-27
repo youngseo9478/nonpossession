@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -34,16 +34,15 @@
 	rel='stylesheet' type='text/css'>
 <link href="css/themify-icons.css" rel="stylesheet">
 <script type="text/javascript">
-function checkit(form) {
-        if (form.accident[0].checked == true) {
-        	f.action = "AccidentTime.do";
-        	f.submit();
-        }else{
-        	f.action = "AccidentLoc.do";
-        	f.submit();
-        }
-}
-
+	function checkit(form) {
+		if (form.accident[0].checked == true) {
+			f.action = "AccidentTime.do";
+			f.submit();
+		} else {
+			f.action = "AccidentLoc.do";
+			f.submit();
+		}
+	}
 </script>
 
 </head>
@@ -58,14 +57,14 @@ function checkit(form) {
 				</div>
 
 				<ul class="nav">
-					<li><a href="weatherList.do"> <i
-							class="ti-shine"></i>
+					<li><a href="weatherList.do"> <i class="ti-shine"></i>
 							<p>날씨</p>
 					</a></li>
 					<li><a href="air.jsp"> <i class="ti-cloud"></i>
 							<p>대기질</p>
 					</a></li>
-					<li class="active"><a href="creAccident.do"> <i class="ti-bar-chart "></i>
+					<li class="active"><a href="creAccident.do"> <i
+							class="ti-bar-chart "></i>
 							<p>자전거 사고</p>
 					</a></li>
 					<li><a href="Bike.do"> <i class="ti-direction "></i>
@@ -80,46 +79,52 @@ function checkit(form) {
 				</ul>
 			</div>
 		</div>
-		<div class="main-panel" ">
+		<div class="main-panel"">
 			<!-- 우측 상단 내비게이션 바 -->
 			<nav class="navbar navbar-default">
 			<div class="container-fluid">
-				<div class="navbar-header" >
+				<div class="navbar-header">
 					<button type="button" class="navbar-toggle">
 						<span class="sr-only">Toggle navigation</span> <span
 							class="icon-bar bar1"></span> <span class="icon-bar bar2"></span>
 						<span class="icon-bar bar3"></span>
-					
+					</button>
+					<a class="navbar-brand" href="#">Accident</a>
 				</div>
 			</div>
 			</nav>
-		<div style="padding-top: 8em;">
-		<form action="" name="f">
-			<input type="radio" name="accident" checked="checked" value="시간" />시간
-			<input type="radio" name="accident" value="지역" />지역
-			<input type="button" value="조회" onclick="checkit(this.form)"/>
-		</form>
-			<!-- 본문 내용 삽입 구간 -->
-			<table width="50%" height="50%" cellspacing="0" cellpadding="0" border="1"  align="center" >
-				<tr align="center">
-					<th style="text-align: center;" colspan=2  align="center">시간대별 사고 통계</th>
-				</tr>
-				<tr height="20px">
-					<td  align="center">시간대별 사고 백분율</td>
-					<td  align="center">시간대별 사고 건수</td>
-				</tr>
-				<tr height="360px" >
-					<td width="25%" height="360"  align="center">
-						<img src="./image/time01_accident.jpg" width="500px" height="500px">
-					</td>
-					<td width="25%" height="360"  align="center">
-						<img src="./image/time02_accident.jpg" width="500px" height="500px">
-					</td>
-				</tr>
-			</table>
+			<div style="padding-top: 8em;">
+				<div style="padding-left: 1em;">
+					<form action="" name="f">
+						<input type="radio" name="accident" checked="checked" value="시간" />시간
+						<input type="radio" name="accident" value="지역" />지역 <input
+							type="button" class="btn btn-info btn-fill btn-sm" value="조회"
+							onclick="checkit(this.form)" />
+					</form>
+				</div>
+				<!-- 본문 내용 삽입 구간 -->
+				<table width="50%" height="50%" cellspacing="0" cellpadding="0"
+					border="1" align="center">
+					<tr align="center">
+						<th style="text-align: center;" colspan=2 align="center">시간대별
+							사고 통계</th>
+					</tr>
+					<tr height="20px">
+						<td align="center">시간대별 사고 백분율</td>
+						<td align="center">시간대별 사고 건수</td>
+					</tr>
+					<tr height="360px">
+						<td width="25%" height="360" align="center"><img
+							src="./image/time01_accident.jpg" width="500px" height="500px">
+						</td>
+						<td width="25%" height="360" align="center"><img
+							src="./image/time02_accident.jpg" width="500px" height="500px">
+						</td>
+					</tr>
+				</table>
 			</div>
 		</div>
 	</div>
-	
+
 </body>
 </html>

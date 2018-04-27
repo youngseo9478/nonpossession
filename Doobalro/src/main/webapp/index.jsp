@@ -9,17 +9,17 @@
 <body>
 <table width="100%" height="100%" cellspacing="0" cellpadding="0" border="0">
 	<tr>
-		<td width="25%">
-			<a href="introduction.do"><img src="./image/in_bphoto1.jpg" onmouseover="this.src='./image/in_photo1.jpg'" onmouseout="this.src='./image/in_bphoto1.jpg'" width="100%" height="80%"></a>
+		<td width="384px">
+			<a href="introduction.do"><img src="./image/weak1.png" onmouseover="this.src='./image/strong1.png'" onmouseout="this.src='./image/weak1.png'" width="100%" height="80%"></a>
 		</td>
-		<td width="25%">
-			<a href="listBoard.do"><img src="./image/in_bphoto2.jpg" onmouseover="this.src='./image/in_photo2.jpg'" onmouseout="this.src='./image/in_bphoto2.jpg'" width="100%" height="80%"></a>
+		<td width="256px">
+			<a href="listBoard.do"><img src="./image/weak2.png" onmouseover="this.src='./image/strong2.png'" onmouseout="this.src='./image/weak2.png'" width="100%" height="80%"></a>
 		</td>
-		<td width="25%">
-			<a href="Bike.do"><img src="./image/in_bphoto3.jpg" onmouseover="this.src='./image/in_photo3.jpg'" onmouseout="this.src='./image/in_bphoto3.jpg'" width="100%" height="80%"></a>
+		<td width="256px">
+			<a href="Bike.do"><img src="./image/weak3.png" onmouseover="this.src='./image/strong3.png'" onmouseout="this.src='./image/weak3.png'" width="100%" height="80%"></a>
 		</td>
-		<td width="25%">
-			<a href="loginForm.do"><img src="./image/in_bphoto4.jpg" onmouseover="this.src='./image/in_photo4.jpg'" onmouseout="this.src='./image/in_bphoto4.jpg'" width="100%" height="80%"></a>
+		<td width="384px">
+			<a href="loginForm.do"><img src="./image/weak4.png" onmouseover="this.src='./image/strong4.png'" onmouseout="this.src='./image/weak4.png'" width="100%" height="80%"></a>
 		</td>
 	</tr>
 </table>

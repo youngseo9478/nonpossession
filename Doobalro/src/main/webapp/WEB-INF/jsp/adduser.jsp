@@ -21,7 +21,7 @@
 							
 								<label>phone number *</label> <input type="text"
 									class="form-control p_input" id="userPhone" name="userPhone">
-								 <input type="button" value="중복체크" onclick="cheakid()">
+								 <input type="button" class="btn btn-primary" value="중복체크" onclick="cheakid()">
 								 ${idck}
 
 							</div>
