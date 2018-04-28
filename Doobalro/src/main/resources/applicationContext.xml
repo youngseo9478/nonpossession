@@ -16,7 +16,7 @@
 	<!-- basic datasource(DBCP) 설정 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
-		<property name="url" value="jdbc:oracle:thin:@192.168.0.184:1521"></property>
+		<property name="url" value="jdbc:oracle:thin:@70.12.109.58:1521"></property>
 		<property name="username" value="muso"></property>
 		<property name="password" value="1234"></property>
 	</bean>
