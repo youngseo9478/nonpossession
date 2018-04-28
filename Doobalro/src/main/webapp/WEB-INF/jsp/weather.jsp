@@ -168,6 +168,7 @@
 					</button>
 					<a class="navbar-brand" href="#">Weather</a>
 				</div>
+				<jsp:include page="topNav.jsp" />
 			</div>
 			</nav>
 

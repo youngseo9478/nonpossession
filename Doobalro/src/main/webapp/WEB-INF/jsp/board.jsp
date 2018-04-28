@@ -9,12 +9,10 @@
 <script language="JavaScript">
 	//post방식
 	function updateReply() {
-	 	f1.action = "updateReply.do";
+		f1.action = "updateReply.do";
 		f1.submit();
-			
+
 	}
-
-
 </script>
 
 
@@ -32,11 +30,17 @@
 	name='viewport' />
 <meta name="viewport" content="width=device-width" />
 
+<!-- Animation library for notifications   -->
+<link href="css/animate.min.css" rel="stylesheet" />
+
 <!-- Bootstrap core CSS     -->
 <link href="css/bootstrap.min.css" rel="stylesheet" />
 
 <!--  Paper Dashboard core CSS    -->
 <link href="css/paper-dashboard.css" rel="stylesheet" />
+
+<!--  CSS for Demo Purpose, don't include it in your project     -->
+<link href="css/demo.css" rel="stylesheet" />
 
 <!--  Fonts and icons     -->
 <link
@@ -64,6 +68,7 @@
 					</button>
 					<a class="navbar-brand" href="#">Board</a>
 				</div>
+				<jsp:include page="topNav.jsp" />
 			</div>
 			</nav>
 
@@ -84,36 +89,33 @@
 									<input id="boardWriter" type="hidden" name="boardWriter"
 										value="${board.boardWriter }">
 									<form action="updateBoardForm.do">
-										<table class="table table-striped">
+										<table class="table">
 											<tr>
-												<td width="10%" bgcolor="E6FFEF">제목</td>
+												<td width="10%" bgcolor="F4F3EF">제목</td>
 												<td id="title" colspan="3">${board.boardTitle }</td>
 
 											</tr>
 											<tr>
-												<td width="10%" bgcolor="E6FFEF">작성자</td>
+												<td width="10%" bgcolor="F4F3EF">작성자</td>
 												<td width="40%">${board.boardWriter}</td>
-												<td width="10%" bgcolor="E6FFEF">작성일</td>
+												<td width="10%" bgcolor="F4F3EF">작성일</td>
 												<td width="40%">${board.boardDate}</td>
 											</tr>
 											<tr>
-												<td bgcolor="E6FFEF">내용</td>
+												<td bgcolor="F4F3EF">내용</td>
 												<td colspan="3">${board.boardContent}</td>
 											</tr>
 											<tr>
 												<td colspan="4" align="center"><a type="button"
 													href="./listBoard.do" class="btn btn-info btn-fill btn-wd">뒤로</a>
-													<c:set var="userName" value="${user.userName }"/>
-													<c:choose>
+													<c:set var="userName" value="${user.userName }" /> <c:choose>
 														<c:when test="${board.boardWriter eq userName}">
 															<a type='button' class='btn btn-info btn-fill btn-wd'
 																href="./updateBoardForm.do?boardNum=${board.boardNum }">수정</a>
 															<a type='button' class='btn btn-info btn-fill btn-wd'
-																href="./deleteBoard.do?boardNum=${board.boardNum }" >삭제</a>
+																href="./deleteBoard.do?boardNum=${board.boardNum }">삭제</a>
 														</c:when>
-													</c:choose>
-													
-												</td>
+													</c:choose></td>
 											</tr>
 										</table>
 									</form>
@@ -124,111 +126,117 @@
 				</div>
 				<!--댓글  -->
 
-				
-			
-			<div class="content">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-md-11">
-							<div class="card">
-								<div class="header">
-									<h4 class="title">댓글</h4>
-									<br>
-								</div>
-								
-								<div class="content table-responsive">
-									<input id="boardNum" type="hidden" name="boardNum"
-										value="${board.boardNum }"> <input id="UserName"
-										type="hidden" name="userName" value="${user.userName }">
-									<input id="boardWriter" type="hidden" name="boardWriter"
-										value="${board.boardWriter }">
-										
-											
-																		
+
+
+				<div class="content">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-11">
+								<div class="card">
+									<div class="header">
+										<h4 class="title">댓글</h4>
+										<br>
+									</div>
+
+									<div class="content table-responsive">
+										<input id="boardNum" type="hidden" name="boardNum"
+											value="${board.boardNum }"> <input id="UserName"
+											type="hidden" name="userName" value="${user.userName }">
+										<input id="boardWriter" type="hidden" name="boardWriter"
+											value="${board.boardWriter }">
+
+
+
 										<!-- <table class="table table-striped"> -->
-										<table>
+										<table class="table table-borderless">
 											<tr>
-													<td width="10%" bgcolor="E6FFEF">작성자</td>
-													<td width="50%" bgcolor="E6FFEF">내  용</td>
-													<td width="25%" bgcolor="E6FFEF">날  짜</td>
-													<td width="10%" bgcolor="E6FFEF">수정</td>
-													<td width="10%" bgcolor="E6FFEF">삭제</td>
-												
+												<td width="15%" bgcolor="F4F3EF">작성자</td>
+												<td align="center" width="50%" bgcolor="F4F3EF">내 용</td>
+												<td align="center" width="15%" bgcolor="F4F3EF">날 짜</td>
+												<td width="10%" bgcolor="F4F3EF">수 정</td>
+												<td width="10%" bgcolor="F4F3EF">삭 제</td>
+
 											</tr>
 											<%-- <td>${replys}</td> --%>
-												
-											 <c:forEach items="${replys}" var="reply">
-										
-										
-											<tr>																							
-												 
-													<td width="10%">${reply.replyWriter} </td>
-													
+
+											<c:forEach items="${replys}" var="reply">
+
+
+												<tr>
+
+													<td width="10%">${reply.replyWriter}</td>
+
 													<!--자기댓글 -->
 													<c:if test="${reply.replyWriter == user.userName}">
 														<td width="50%">
-													<form action="updateReply.do" method="post">
-														<input id="updatereplyContent" name="updatereplyContent" type="text" value="${reply.replyContent}" > </td>
-																									
-														</c:if>
-														<!-- 상대댓글 -->
-														<c:if test="${reply.replyWriter != user.userName}">
-															<td width="50%">${reply.replyContent}</td>
-														</c:if>
-														<td width="25%">${reply.replyDate} </td>
-														<c:if test="${reply.replyWriter == user.userName}">													
-																				
-																																						
-														 <input type="hidden"  name="replyNum1" value="${reply.replyNum}">
-														 <input id="boardNum" type="hidden" name="boardNum"	value="${board.boardNum }">
-																							
-		 												<td width="10%"> 		
-		 																						 
-		 												<input type="submit" class="btn btn-info btn-fill btn-sm" value="수정" ></td>
-	 												</form>
-													<td width="10%">
-													<input type="button" class="btn btn-info btn-fill btn-sm" value="삭제" onclick="location.href='deleteReply.do?replyNum=${reply.replyNum}&boardNum=${board.boardNum}'"></td>													
-																										
+															<form action="updateReply.do" method="post">
+																<input id="updatereplyContent"
+																	class="form-control border-input"
+																	name="updatereplyContent" type="text" border="none"
+																	value="${reply.replyContent}">
+														</td>
+
 													</c:if>
-													
+													<!-- 상대댓글 -->
+													<c:if test="${reply.replyWriter != user.userName}">
+														<td width="50%">${reply.replyContent}</td>
+													</c:if>
+													<td width="25%">${reply.replyDate}</td>
+													<c:if test="${reply.replyWriter == user.userName}">
+
+
+														<input type="hidden" name="replyNum1"
+															value="${reply.replyNum}">
+														<input id="boardNum" type="hidden" name="boardNum"
+															value="${board.boardNum }">
+
+														<td width="10%"><input type="submit"
+															class="btn btn-info btn-fill btn-sm" value="수정"></td>
+														</form>
+														<td width="10%"><input type="button"
+															class="btn btn-info btn-fill btn-sm" value="삭제"
+															onclick="location.href='deleteReply.do?replyNum=${reply.replyNum}&boardNum=${board.boardNum}'"></td>
+
+													</c:if>
 											</c:forEach>
 											</tr>
-											 
-											
-										</table> 
-										
-										<br><br><hr>
-										<form action="addReply.do" method="POST">
-										<input id="boardNum" type="hidden" name="boardNum"
-										value="${board.boardNum }"> <input id="UserName"
-										type="hidden" name="userName" value="${user.userName}">
-										
-										<table>	
-											<tr>
-												<td width="40%" bgcolor="E6FFEF">작성자</td>
-												<td width="40%" bgcolor="E6FFEF">내  용</td>
-												<td width="20%" bgcolor="E6FFEF"></td>
-												
-											</tr>
-											<tr>
-												<td width="10%"><label>${user.userName}</label></td>
-												<td width="40%"><input type="text" name="replyContent"></td>										
-												<td><input type="submit" class="btn btn-info btn-fill btn-sm" value="등록"></td>			
-											</tr>							
+
+
 										</table>
-										
+
+										<br> <br>
+										<form action="addReply.do" method="POST">
+											<input id="boardNum" type="hidden" name="boardNum"
+												value="${board.boardNum }"> <input id="UserName"
+												type="hidden" name="userName" value="${user.userName}">
+
+											<table class="table table-borderless">
+												<!-- <tr>
+												<td width="15%" bgcolor="F4F3EF">작성자</td>
+												<td width="75%" bgcolor="F4F3EF">내  용</td>
+												<td width="10%" bgcolor="F4F3EF"></td>
+												
+											</tr> -->
+												<tr>
+													<td width="15%"><label>${user.userName}</label></td>
+													<td width="75%"><input type="text"
+														class="form-control border-input" name="replyContent"></td>
+													<td><input type="submit"
+														class="btn btn-info btn-fill btn-sm" value="등록"></td>
+												</tr>
+											</table>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				
-				
-				
-				
-				
-				
+
+
+
+
+
+
 
 
 

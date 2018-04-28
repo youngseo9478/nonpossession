@@ -91,9 +91,10 @@
 					</button>
 					<a class="navbar-brand" href="#">Accident</a>
 				</div>
+				<jsp:include page="topNav.jsp" />
 			</div>
 			</nav>
-			<div style="padding-top: 8em;">
+			<div style="padding-top: 2em;">
 				<div style="padding-left: 4em;">
 					<form action="" name="f">
 						<input type="radio" name="accident" value="시간" />시간 <input

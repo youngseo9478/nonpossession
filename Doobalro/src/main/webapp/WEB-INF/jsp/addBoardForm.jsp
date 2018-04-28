@@ -50,6 +50,7 @@
 					</button>
 					<a class="navbar-brand" href="#">Post</a>
 				</div>
+				<jsp:include page="topNav.jsp" />
 			</div>
 			</nav>
 
@@ -57,7 +58,7 @@
 			<div class="content">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-lg-8 col-md-10">
+						<div class="col-lg-8 col-md-11">
 							<div class="card">
 								<div class="header">
 									<h4 class="title">새 글 작성</h4>

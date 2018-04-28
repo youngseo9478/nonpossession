@@ -50,6 +50,7 @@
 					</button>
 					<a class="navbar-brand" href="#">Edit</a>
 				</div>
+				<jsp:include page="topNav.jsp" />
 			</div>
 			</nav>
 
@@ -57,7 +58,7 @@
 			<div class="content">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-lg-8 col-md-10">
+						<div class="col-lg-8 col-md-11">
 							<div class="card">
 								<div class="header">
 									<h4 class="title">게시물 수정</h4>

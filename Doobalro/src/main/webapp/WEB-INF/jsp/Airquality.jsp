@@ -80,10 +80,13 @@
 						<span class="sr-only">Toggle navigation</span> <span
 							class="icon-bar bar1"></span> <span class="icon-bar bar2"></span>
 						<span class="icon-bar bar3"></span>
+						</button>
+					<a class="navbar-brand" href="#">Air</a>
 				</div>
+				<jsp:include page="topNav.jsp" />
 			</div>
 			</nav>
-			<div style="padding-top: 8em;">
+			<div style="padding-top: 2em;">
 				<table>
 					<tr>
 						<td>

@@ -50,6 +50,7 @@
 					</button>
 					<a class="navbar-brand" href="#">Board List</a>
 				</div>
+				<jsp:include page="topNav.jsp" />
 			</div>
 			</nav>
 

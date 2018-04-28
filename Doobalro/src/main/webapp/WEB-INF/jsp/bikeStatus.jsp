@@ -169,6 +169,7 @@
 					</button>
 					<a class="navbar-brand" href="#">Bike Status</a>
 				</div>
+				<jsp:include page="topNav.jsp" />
 			</div>
 			</nav>
 

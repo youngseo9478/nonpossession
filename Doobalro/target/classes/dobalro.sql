@@ -4,30 +4,31 @@ DROP TABLE users;
 
 -- user
 CREATE TABLE users (
-	userNum		NUMBER(8)			PRIMARY KEY,					-- 유저번호
-	userName	VARCHAR(40)			UNIQUE,							-- 유저 닉네임
-	userPhone	VARCHAR(40)			NOT NULL UNIQUE,				-- 유저 폰번호(id대용)
-	userPw		VARCHAR(40)			NOT NULL						-- 유저 비밀번호
+	userNum		NUMBER(8)			PRIMARY KEY,					-- �쑀��踰덊샇
+	userName	VARCHAR(40)			UNIQUE,							-- �쑀�� �땳�꽕�엫
+	userPhone	VARCHAR(40)			NOT NULL UNIQUE,				-- �쑀�� �룿踰덊샇(id���슜)
+	userPw		VARCHAR(40)			NOT NULL,						-- �쑀�� 鍮꾨�踰덊샇
+	userBirth	VARCHAR(40)			NOT NULL
 );
 
 -- board
 CREATE TABLE boards (
-	boardNum		NUMBER(8)		PRIMARY KEY,					-- 게시판 번호
-	userNum			NUMBER(8)		REFERENCES users(userNum),		-- 게시판 글 쓴 유저의 번호
-	boardWriter		VARCHAR(40),									-- 게시판 작성자
-	boardTitle		VARCHAR(200),									-- 게시판 제목
-	boardContent	VARCHAR(2000),									-- 게시판 내용
-	boardDate		VARCHAR(40),									-- 게시판 작성일
-	boardCnt		NUMBER(6)		default 0,						-- 게시판 조회수
-	boardRCnt		NUMBER(6)		default 0						-- 댓글 수
+	boardNum		NUMBER(8)		PRIMARY KEY,					-- 寃뚯떆�뙋 踰덊샇
+	userNum			NUMBER(8)		REFERENCES users(userNum),		-- 寃뚯떆�뙋 湲� �벖 �쑀���쓽 踰덊샇
+	boardWriter		VARCHAR(40),									-- 寃뚯떆�뙋 �옉�꽦�옄
+	boardTitle		VARCHAR(200),									-- 寃뚯떆�뙋 �젣紐�
+	boardContent	VARCHAR(2000),									-- 寃뚯떆�뙋 �궡�슜
+	boardDate		VARCHAR(40),									-- 寃뚯떆�뙋 �옉�꽦�씪
+	boardCnt		NUMBER(6)		default 0,						-- 寃뚯떆�뙋 議고쉶�닔
+	boardRCnt		NUMBER(6)		default 0						-- �뙎湲� �닔
 );
 
 -- reply
 CREATE TABLE replys (
-	replyNum		NUMBER(8)	PRIMARY KEY,						-- 댓글 번호
-	boardNum		NUMBER(8)	REFERENCES boards(boardNum),		-- 댓글이 달린 게시판의 번호
-	replyContent	VARCHAR(500),									-- 댓글 내용
-	replyWriter		VARCHAR(40),									-- 댓글 작성자
-	replyDate		VARCHAR(40)										-- 댓글 작성일
+	replyNum		NUMBER(8)	PRIMARY KEY,						-- �뙎湲� 踰덊샇
+	boardNum		NUMBER(8)	REFERENCES boards(boardNum),		-- �뙎湲��씠 �떖由� 寃뚯떆�뙋�쓽 踰덊샇
+	replyContent	VARCHAR(500),									-- �뙎湲� �궡�슜
+	replyWriter		VARCHAR(40),									-- �뙎湲� �옉�꽦�옄
+	replyDate		VARCHAR(40)										-- �뙎湲� �옉�꽦�씪
 );
 
