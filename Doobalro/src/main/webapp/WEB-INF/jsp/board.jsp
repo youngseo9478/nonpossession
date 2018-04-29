@@ -154,11 +154,11 @@
 													<input id="relpyNum" type="hidden" name="replyNum" value="${reply.replyNum}">
 													<input id="boardNum" type="hidden" name="boardNum" value="${board.boardNum}">
 													<td width="10%">${reply.replyWriter}</td>
-													<td id="replyContent" width="50%">${reply.replyContent}</td>
+													<td id="replyContent${reply.replyNum}" width="50%">${reply.replyContent}</td>
 													<td width="25%">${reply.replyDate}</td>
 													<c:if test="${reply.replyWriter == user.userName}">
 														<td width="10%"><input id="modifyBtn" type="button"
-															class="btn btn-info btn-fill btn-sm" value="수정"></td>
+															class="btn btn-info btn-fill btn-sm" name="${reply.replyNum}" value="수정"></td>
 														<td width="10%"><input id="deleteBtn" type="button"
 															class="btn btn-info btn-fill btn-sm" value="삭제"
 															onclick="location.href='deleteReply.do?replyNum=${reply.replyNum}&boardNum=${board.boardNum}'"></td>
@@ -166,7 +166,6 @@
 											</c:forEach>
 											</tr>
 										</table>
-
 										<br> <br>
 										<form action="addReply.do" method="POST">
 											<input id="boardNum" type="hidden" name="boardNum"
