@@ -120,7 +120,7 @@
 	})
 </script>
 
-<title>날씨</title>
+<title>자전거현황</title>
 
 </head>
 <body>
