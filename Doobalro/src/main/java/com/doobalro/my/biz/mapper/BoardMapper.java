@@ -34,6 +34,15 @@ public interface BoardMapper {
 	@Update("update boards set boardCnt= boardCnt+1 where boardNum = #{boardNum}")
 	public void cntUpBoard(BoardVO vo);
 	
+	@Update("update boards set boardRCnt = boardRCnt-1 where boardNum = #{boardNum}")
+	public void synchroRcnt(int boardNum);
+	
 	@Update("update boards set boardWriter = #{boardWriter} where userNum = #{userNum}")
 	public void synchroBoard(BoardVO vo);
+	
+	@Select("select * from boards where userNum = #{userNum}")
+	public List<BoardVO> sychroGetBoards(int userNum);
+	
+	@Delete("delete from boards where userNum = #{userNum}")
+	public void synchroDeleteBoard(int userNum);
 }

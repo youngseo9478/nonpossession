@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>두발로</title>
+<title>Insert title here</title>
 </head>
 <body>
 소개 페이지

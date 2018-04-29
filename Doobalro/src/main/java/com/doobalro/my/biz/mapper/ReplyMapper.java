@@ -32,5 +32,15 @@ public interface ReplyMapper {
 	
 	@Update("update replys set replyWriter = #{afterName} where replyWriter = #{befoName}")
 	public void synchroReply(HashMap<String, String> map);
+	
+	@Delete("delete from replys where boardNum = #{boardNum}")
+	public void synchroDeleteBoardToReply(int boardnum);
+	
+	@Delete("delete from replys where replyWriter = #{replyWriter}")
+	public void synchroDeleteUserToReply(String replyWriter);
+	
+	@Select("select *from replys where replyWriter = #{replyWriter}")
+	public List<ReplyVO> synchroGetReply(String replyWriter);
+	
 }
 	

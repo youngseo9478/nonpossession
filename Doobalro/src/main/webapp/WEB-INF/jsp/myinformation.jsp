@@ -6,10 +6,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원정보수정</title>
 <link rel="stylesheet" href="./css/style.css">
-
+<script type="text/javascript">
+function bikepage() {
+	f.action = "Bike.do";
+	f.submit();
+}
+</script>
 </head>
 <body>
-	<form action="userUpdateForm.do">
+	<form action="userUpdateForm.do" name="f">
 		<div class="container-scroller" style="background: gray;">
 			<div class="container-fluid page-body-wrapper">
 				<div class="row">
@@ -38,7 +43,7 @@
 									<div class="text-center">
 										<input type="submit" value="회원정보 수정"
 											class="btn btn-primary btn-block enter-btn" /> <input
-											type="button" value="취소"
+											type="button" value="취소" onclick="bikepage()"
 											class="btn btn-primary btn-block enter-btn" />
 
 									</div>

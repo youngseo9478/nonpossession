@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.doobalro.my.biz.mapper.BoardMapper;
+import com.doobalro.my.biz.mapper.ReplyMapper;
 import com.doobalro.my.biz.server.vo.BoardVO;
 
 @Component("boardDAO")
@@ -48,7 +49,8 @@ public class BoardDAO implements BoardDaoFrame{
 	}
 	@Override
 	public void deleteBoard(int boardNum) {
-		//유저체크는 컨트롤러 딴에서 
+		ReplyMapper rmapper = mybatis.getMapper(ReplyMapper.class);
+		rmapper.synchroDeleteBoardToReply(boardNum);
 		mapper.deleteBoard(boardNum);
 	}
 	@Override

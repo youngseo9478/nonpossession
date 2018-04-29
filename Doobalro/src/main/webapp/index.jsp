@@ -7,19 +7,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table width="100%" height="100%" cellspacing="0" cellpadding="0" border="0">
+<table width="80%" height="100%" cellspacing="0" cellpadding="0" border="0" align="center">
 	<tr>
-		<td width="384px">
-			<a href="introduction.do"><img src="./image/weak1.png" onmouseover="this.src='./image/strong1.png'" onmouseout="this.src='./image/weak1.png'" width="100%" height="80%"></a>
+		<td width="256px">
+			<a href="introduction.do"><img src="./image/weak1.jpg" onmouseover="this.src='./image/strong1.jpg'" onmouseout="this.src='./image/weak1.jpg'" width="100%" height="80%"></a>
 		</td>
 		<td width="256px">
-			<a href="listBoard.do"><img src="./image/weak2.png" onmouseover="this.src='./image/strong2.png'" onmouseout="this.src='./image/weak2.png'" width="100%" height="80%"></a>
+			<a href="listBoard.do"><img src="./image/weak2.jpg" onmouseover="this.src='./image/strong2.jpg'" onmouseout="this.src='./image/weak2.jpg'" width="100%" height="80%"></a>
 		</td>
 		<td width="256px">
-			<a href="Bike.do"><img src="./image/weak3.png" onmouseover="this.src='./image/strong3.png'" onmouseout="this.src='./image/weak3.png'" width="100%" height="80%"></a>
+			<a href="Bike.do"><img src="./image/weak3.jpg" onmouseover="this.src='./image/strong3.jpg'" onmouseout="this.src='./image/weak3.jpg'" width="100%" height="80%"></a>
 		</td>
-		<td width="384px">
-			<a href="loginForm.do"><img src="./image/weak4.png" onmouseover="this.src='./image/strong4.png'" onmouseout="this.src='./image/weak4.png'" width="100%" height="80%"></a>
+		<td width="256px">
+			<a href="loginForm.do"><img src="./image/weak4.jpg" onmouseover="this.src='./image/strong4.jpg'" onmouseout="this.src='./image/weak4.jpg'" width="100%" height="80%"></a>
 		</td>
 	</tr>
 </table>

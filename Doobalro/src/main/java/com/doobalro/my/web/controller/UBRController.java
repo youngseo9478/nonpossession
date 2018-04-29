@@ -3,12 +3,14 @@ package com.doobalro.my.web.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -197,24 +199,27 @@ public class UBRController {
 	@RequestMapping(value = "/updateUser.do") 
 	public ModelAndView updateUser(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		UserVO uvo = (UserVO) req.getAttribute("user");
+		UserVO uvo = (UserVO) req.getSession().getAttribute("user");
 		String beforeName = uvo.getUserName();
 		BoardVO bvo = new BoardVO();
 		bvo.setUserNum(uvo.getUserNum());
 		bvo.setBoardWriter(req.getParameter("userName"));
 		uvo.setUserPw(req.getParameter("userPw"));
 		uvo.setUserName(req.getParameter("userName"));
+		uvo.setUserBirth(req.getParameter("userBirth"));
 		uvo.setUserPhone(req.getParameter("userPhone"));
-
+		
 	
 		String result = UserService.updateUser(uvo);
 		if (result.equals("�닔�젙�릺�뿀�뒿�땲�떎.")) {
 			BoardService.synchroBoard(bvo);
 			ReplyService.synchroReply(uvo.getUserName(), beforeName);
+			req.getSession().removeAttribute("user");
+			req.getSession().setAttribute("user", uvo);
 		}
 
 		mav.addObject("result", result);
-		mav.setViewName("updateUser");
+		mav.setViewName("redirect:Bike.do");
 		return mav;
 	}
 
@@ -269,10 +274,11 @@ public class UBRController {
 	@RequestMapping(value = "/deleteUser.do") // �뜝�럩�뤂�뜝�럩�쐸 �뜝�럡�돮�뜝�럥�떄
 	public ModelAndView deleteUser(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		UserVO uvo = (UserVO) req.getAttribute("user");
+		UserVO uvo = (UserVO) req.getSession().getAttribute("user");
 		String result = UserService.deleteUser(uvo);
 		mav.addObject("result", result);
 		mav.setViewName("redirect:index.jsp");
+		req.getSession().removeAttribute("user");
 		return mav;
 	}
 ///////////////////////////////////////////////////////////////////////////
@@ -290,9 +296,7 @@ public class UBRController {
 		rvo.setReplyWriter(req.getParameter("userName"));
 		
 		
-		System.out.println("rvo :"+rvo);
 		ReplyService.addReply(rvo);
-		System.out.println("인설트 성공");
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:getBoard.do?boardNum="+req.getParameter("boardNum")); // 占쎈퉸占쎈뼣 野껓옙 癰귣�諭뜻에占�~
@@ -303,7 +307,6 @@ public class UBRController {
 	
 	@RequestMapping(value = "/deleteReply.do", method = RequestMethod.GET)
 	public ModelAndView deleteReply(HttpServletRequest req) {
-		System.out.println("딜리트 컨트롤러");
 		ReplyVO rvo = this.getReply((Integer.parseInt(req.getParameter("replyNum"))));
 		BoardVO bvo = this.getBoard((Integer.parseInt(req.getParameter("boardNum"))));
 		
@@ -321,10 +324,10 @@ public class UBRController {
 	public ModelAndView updateReply(int replyNum, String replyContent) {
 		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd-HH-mm", Locale.KOREA);
 		Date Time = new Date();
-		ReplyVO rvo = new ReplyVO(replyNum, replyContent, fm.format(Time), replyContent);
+		ReplyVO rvo = new ReplyVO(replyNum, replyContent, fm.format(Time));
 		HashMap<String, Object> map = new HashMap<>();
 		if(ReplyService.updateReply(rvo) == 1) {
-			map.put("reulst", "success");
+			map.put("result", "success");
 			map.put("boardNum", ReplyService.getReply(replyNum).getBoardNum());
 		}
 		else

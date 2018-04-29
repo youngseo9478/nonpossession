@@ -10,7 +10,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.doobalro.my.biz.mapper.BoardMapper;
+import com.doobalro.my.biz.mapper.ReplyMapper;
 import com.doobalro.my.biz.mapper.UserMapper;
+import com.doobalro.my.biz.server.vo.BoardVO;
+import com.doobalro.my.biz.server.vo.ReplyVO;
 import com.doobalro.my.biz.server.vo.UserVO;
 
 @Component("userDAO")
@@ -93,9 +97,33 @@ public class UserDAO implements UserDaoFrame{
 	}
 	@Override
 	public String deleteUser(UserVO vo) {
+		BoardMapper bmapper = mybatis.getMapper(BoardMapper.class);
+		ReplyMapper rmapper = mybatis.getMapper(ReplyMapper.class);
+		
+		List<ReplyVO> li1 = rmapper.synchroGetReply(vo.getUserName());
+		Iterator<ReplyVO> iter1 = li1.iterator();
+		ReplyVO rvo;
+		while(iter1.hasNext()) {
+			rvo = iter1.next();
+			bmapper.synchroRcnt(rvo.getBoardNum());
+		}
+		
+		rmapper.synchroDeleteUserToReply(vo.getUserName());	//자신이 쓴 댓글 전부 삭제
+		List<BoardVO> li2 = bmapper.sychroGetBoards(vo.getUserNum());
+		Iterator<BoardVO> iter2 = li2.iterator();
+		
+		BoardVO bvo;
+		while(iter2.hasNext()) { //자신이 쓴 게시판들의 댓글 전부 삭제
+			bvo = iter2.next();
+			rmapper.synchroDeleteBoardToReply(bvo.getBoardNum());
+		}
+		
+		bmapper.synchroDeleteBoard(vo.getUserNum()); //자신이 쓴 게시판 삭제
 		mapper.deleteUser(vo);
 		return "�쑀�� �깉�눜 �꽦怨�";
 	}
+	
+	
 	@Override
 	public String updateUser(UserVO vo) {
 		if(mapper.updateUser(vo)==1) {
