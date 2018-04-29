@@ -8,6 +8,14 @@ public class ReplyVO {
 	private String replyDate;
 	
 	public ReplyVO() {	}
+	
+	public ReplyVO(int replyNum, String replyContent, String replyDate) {
+		super();
+		this.replyNum = replyNum;
+		this.replyContent = replyContent;
+		this.replyDate = replyDate;
+	}
+
 	public ReplyVO(int boardNum, String replyContent, String replyWriter, String replyDate) {
 		this.boardNum = boardNum;
 		this.replyContent = replyContent;

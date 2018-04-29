@@ -19,7 +19,7 @@ public interface ReplyMapper {
 	public void deleteReply(ReplyVO vo);
 	
 	@Update("update replys set replyContent= #{replyContent}, replyDate = #{replyDate} where replyNum = #{replyNum}")
-	public void updateReply(ReplyVO vo);
+	public int updateReply(ReplyVO vo);
 	
 	@Select("select * from replys where replyNum = #{replyNum}")
 	public ReplyVO getReply(int replyNum);

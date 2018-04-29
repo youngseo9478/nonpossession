@@ -52,9 +52,9 @@ public class ReplyDAO implements ReplyDaoFrame{
 		mapper.deleteReply(vo);
 	}
 	@Override
-	public void updateReply(ReplyVO vo) {
+	public int updateReply(ReplyVO vo) {
 		//�쑀��泥댄겕�뒗 而⑦듃濡ㅻ윭 �뵶�뿉�꽌
-		mapper.updateReply(vo);
+		return mapper.updateReply(vo);
 	}
 	@Override
 	public ReplyVO getReply(int replyNum) {

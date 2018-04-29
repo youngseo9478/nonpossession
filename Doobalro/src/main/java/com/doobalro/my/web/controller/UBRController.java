@@ -2,14 +2,13 @@ package com.doobalro.my.web.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Locale;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -319,24 +318,18 @@ public class UBRController {
 	}
 
 	@RequestMapping(value = "/updateReply.do", method = RequestMethod.POST)
-	public ModelAndView updateReply(HttpServletRequest req) {
+	public ModelAndView updateReply(int replyNum, String replyContent) {
 		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd-HH-mm", Locale.KOREA);
 		Date Time = new Date();
-		String nowTime = fm.format(Time);
-		ReplyVO rvo = new ReplyVO();
-		System.out.println("업데이트 컨트롤");
-		rvo=ReplyService.getReply(Integer.parseInt(req.getParameter("replyNum1")));
-		System.out.println("num"+req.getParameter("replyNum1") );
-		rvo.setReplyContent(req.getParameter("updatereplyContent"));
-		rvo.setReplyDate(nowTime);
-		System.out.println(rvo);
-		
-		ReplyService.updateReply(rvo);		
-
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:getBoard.do?boardNum="+req.getParameter("boardNum"));
-
-		return mav;
+		ReplyVO rvo = new ReplyVO(replyNum, replyContent, fm.format(Time), replyContent);
+		HashMap<String, Object> map = new HashMap<>();
+		if(ReplyService.updateReply(rvo) == 1) {
+			map.put("reulst", "success");
+			map.put("boardNum", ReplyService.getReply(replyNum).getBoardNum());
+		}
+		else
+			map.put("reulst", "fail");
+		return new ModelAndView("jsonView", map);
 	}
 
 	public ReplyVO getReply(int replyNum) {

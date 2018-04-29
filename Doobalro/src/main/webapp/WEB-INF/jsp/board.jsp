@@ -6,16 +6,6 @@
 <html>
 <head>
 
-<script language="JavaScript">
-	//post방식
-	function updateReply() {
-		f1.action = "updateReply.do";
-		f1.submit();
-
-	}
-</script>
-
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="apple-touch-icon" sizes="76x76"
 	href="assets/img/apple-icon.png">
@@ -160,48 +150,21 @@
 											<%-- <td>${replys}</td> --%>
 
 											<c:forEach items="${replys}" var="reply">
-
-
 												<tr>
-
+													<input id="relpyNum" type="hidden" name="replyNum" value="${reply.replyNum}">
+													<input id="boardNum" type="hidden" name="boardNum" value="${board.boardNum}">
 													<td width="10%">${reply.replyWriter}</td>
-
-													<!--자기댓글 -->
-													<c:if test="${reply.replyWriter == user.userName}">
-														<td width="50%">
-															<form action="updateReply.do" method="post">
-																<input id="updatereplyContent"
-																	class="form-control border-input"
-																	name="updatereplyContent" type="text" border="none"
-																	value="${reply.replyContent}">
-														</td>
-
-													</c:if>
-													<!-- 상대댓글 -->
-													<c:if test="${reply.replyWriter != user.userName}">
-														<td width="50%">${reply.replyContent}</td>
-													</c:if>
+													<td id="replyContent" width="50%">${reply.replyContent}</td>
 													<td width="25%">${reply.replyDate}</td>
 													<c:if test="${reply.replyWriter == user.userName}">
-
-
-														<input type="hidden" name="replyNum1"
-															value="${reply.replyNum}">
-														<input id="boardNum" type="hidden" name="boardNum"
-															value="${board.boardNum }">
-
-														<td width="10%"><input type="submit"
+														<td width="10%"><input id="modifyBtn" type="button"
 															class="btn btn-info btn-fill btn-sm" value="수정"></td>
-														</form>
-														<td width="10%"><input type="button"
+														<td width="10%"><input id="deleteBtn" type="button"
 															class="btn btn-info btn-fill btn-sm" value="삭제"
 															onclick="location.href='deleteReply.do?replyNum=${reply.replyNum}&boardNum=${board.boardNum}'"></td>
-
 													</c:if>
 											</c:forEach>
 											</tr>
-
-
 										</table>
 
 										<br> <br>
