@@ -57,6 +57,9 @@
 				</div>
 
 				<ul class="nav">
+					<li><a href="Bike.do"> <i class="ti-direction "></i>
+							<p>전국 거치소 현황</p>
+					</a></li>
 					<li><a href="weatherList.do"> <i class="ti-shine"></i>
 							<p>날씨</p>
 					</a></li>
@@ -67,14 +70,8 @@
 							class="ti-bar-chart "></i>
 							<p>자전거 사고</p>
 					</a></li>
-					<li><a href="Bike.do"> <i class="ti-direction "></i>
-							<p>전국 거치소 현황</p>
-					</a></li>
 					<li><a href="./listBoard.do"> <i class="ti-comment"></i>
 							<p>게시판</p>
-					</a></li>
-					<li><a href="maps.html"> <i class="ti-map"></i>
-							<p>지도</p>
 					</a></li>
 				</ul>
 			</div>
@@ -99,7 +96,8 @@
 					<form action="" name="f">
 						<input type="radio" name="accident" value="시간" />시간 <input
 							type="radio" name="accident" checked="checked" value="지역" />지역 <input
-							type="button" class="btn btn-info btn-fill btn-sm" value="조회" onclick="checkit(this.form)" />
+							type="button" class="btn btn-info btn-fill btn-sm" value="조회"
+							onclick="checkit(this.form)" />
 					</form>
 				</div>
 				<br>

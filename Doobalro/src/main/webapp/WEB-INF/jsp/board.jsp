@@ -33,7 +33,7 @@
 <link href="css/demo.css" rel="stylesheet" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	
+
 <!--  Fonts and icons     -->
 <link
 	href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
@@ -154,17 +154,22 @@
 
 											<c:forEach items="${replys}" var="reply">
 												<tr>
-													<input id="relpyNum" type="hidden" name="replyNum" value="${reply.replyNum}">
-													<input id="boardNum" type="hidden" name="boardNum" value="${board.boardNum}">
+													<input id="relpyNum" type="hidden" name="replyNum"
+														value="${reply.replyNum}">
+													<input id="boardNum" type="hidden" name="boardNum"
+														value="${board.boardNum}">
 													<td width="10%">${reply.replyWriter}</td>
-													<td width="50%"><div id="replyContent${reply.replyNum}">${reply.replyContent}</div></td>
+													<td width="50%"><div
+															id="replyContent${reply.replyNum}">${reply.replyContent}</div></td>
 													<td width="25%">${reply.replyDate}</td>
 													<c:if test="${reply.replyWriter == user.userName}">
-														<td width="10%"><input id="modifyBtn${reply.replyNum}" type="button"
-																class="btn btn-info btn-fill btn-sm" onclick="modifybtn(${reply.replyNum});" value="수정"></td>
+														<td width="10%"><input
+															id="modifyBtn${reply.replyNum}" type="button"
+															class="btn btn-info btn-fill btn-sm"
+															onclick="modifybtn(${reply.replyNum});" value="수정"></td>
 														<td width="10%"><input id="deleteBtn" type="button"
-																class="btn btn-info btn-fill btn-sm" value="삭제"
-																onclick="location.href='deleteReply.do?replyNum=${reply.replyNum}&boardNum=${board.boardNum}'"></td>
+															class="btn btn-info btn-fill btn-sm" value="삭제"
+															onclick="location.href='deleteReply.do?replyNum=${reply.replyNum}&boardNum=${board.boardNum}'"></td>
 													</c:if>
 											</c:forEach>
 											</tr>
@@ -172,13 +177,13 @@
 										<script type="text/javascript">
 											function modifybtn(replyNum) {
 												var a = '';
-	
+										
 												a += '<div class="input-group">';
 												a += '<input id=' + replyNum + 'contents type="text" class="form-control" value=""/>';
 												a += '<span class="input-group-btn"><button class="btn btn-info btn-fill btn-sm" type="button" onclick="commentUpdate(' + replyNum + ');">수정</button> </span>';
 												a += '</div>';
-	
-												$("#modifyBtn"+replyNum).hide();
+										
+												$("#modifyBtn" + replyNum).hide();
 												$('#replyContent' + replyNum).html(a);
 											}
 											function commentUpdate(replyNum) {
@@ -218,6 +223,7 @@
 														class="btn btn-info btn-fill btn-sm" value="등록"></td>
 												</tr>
 											</table>
+										<!-- </form> -->
 									</div>
 								</div>
 							</div>

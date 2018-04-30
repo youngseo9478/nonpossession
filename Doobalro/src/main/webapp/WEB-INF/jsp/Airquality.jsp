@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -49,6 +49,9 @@
 				</div>
 
 				<ul class="nav">
+					<li><a href="Bike.do"> <i class="ti-direction "></i>
+							<p>전국 거치소 현황</p>
+					</a></li>
 					<li><a href="weatherList.do"> <i class="ti-shine"></i>
 							<p>날씨</p>
 					</a></li>
@@ -59,14 +62,8 @@
 					<li><a href="creAccident.do"> <i class="ti-bar-chart "></i>
 							<p>자전거 사고</p>
 					</a></li>
-					<li><a href="Bike.do"> <i class="ti-direction "></i>
-							<p>전국 거치소 현황</p>
-					</a></li>
 					<li><a href="./listBoard.do"> <i class="ti-comment"></i>
 							<p>게시판</p>
-					</a></li>
-					<li><a href="maps.html"> <i class="ti-map"></i>
-							<p>지도</p>
 					</a></li>
 				</ul>
 			</div>
@@ -80,7 +77,7 @@
 						<span class="sr-only">Toggle navigation</span> <span
 							class="icon-bar bar1"></span> <span class="icon-bar bar2"></span>
 						<span class="icon-bar bar3"></span>
-						</button>
+					</button>
 					<a class="navbar-brand" href="#">Air</a>
 				</div>
 				<jsp:include page="topNav.jsp" />
@@ -89,9 +86,8 @@
 			<div style="padding-top: 2em;">
 				<table>
 					<tr>
-						<td>
-							<img src="./image/AirQuality.jpg" width="700px" height="700px">
-						</td>
+						<td><img src="./image/AirQuality.jpg" width="700px"
+							height="700px"></td>
 					</tr>
 					<tr>
 						<td>${nowTime}</td>
